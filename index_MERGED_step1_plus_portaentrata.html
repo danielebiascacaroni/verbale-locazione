@@ -1,0 +1,2106 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Verbale di constatazione</title>
+  <!-- CHANGELOG: Titolo su una riga; titoli sezioni uniformati; 'Rappresentato da' multilinea; PDF 'Rappresentato da' con prima riga in grassetto; PDF 'Persone presenti' con righe automatiche entrante/uscente in base alle spunte. -->
+  <style>
+    :root{
+      --bg:#f5f6f8;
+      --card:#ffffff;
+      --text:#111827;
+      --muted:#4b5563;
+      --border:#d1d5db;
+      --accent:#2563eb;
+      --accent2:#1d4ed8;
+      --danger:#b91c1c;
+      --shadow: 0 10px 20px rgba(0,0,0,.06);
+      --radius:16px;
+      --gap:14px;
+      --font: 18px;
+      --inputH: 44px;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      font-size:var(--font);
+      line-height:1.35;
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:18px 14px 60px;}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(245,246,248,.92);
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid var(--border);
+      padding:12px 10px;
+      margin:0 -14px 16px;
+    }
+    .topbar-inner{max-width:980px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:0 14px;}
+    .btn{
+      height:44px;
+      padding:0 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--card);
+      color:var(--text);
+      font-weight:650;
+      cursor:pointer;
+    }
+    .btn.primary{background:var(--accent);border-color:var(--accent);color:white;}
+    .btn.primary:hover{background:var(--accent2);border-color:var(--accent2);}
+    .btn:active{transform:translateY(1px);}
+    .badge{
+      margin-left:auto;
+      border:1px solid var(--border);
+      background:var(--card);
+      border-radius:999px;
+      padding:10px 12px;
+      display:flex;gap:10px;align-items:center;
+      box-shadow:var(--shadow);
+      font-weight:650;
+    }
+    .badge small{font-weight:600;color:var(--muted);}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+    h1{margin:0;font-size:26px;letter-spacing:.2px;white-space:nowrap;}
+    @media (max-width:520px){ h1{font-size:22px;} }
+    .section-title{font-weight:900;font-size:20px;margin:0 0 6px;}
+    label.section-title{font-weight:900;font-size:20px;margin:2px 0 6px;}
+
+    .note{font-size:16px;color:var(--muted);}
+    .grid{display:grid;gap:var(--gap);}
+    @media (min-width:820px){ .grid.cols2{grid-template-columns:1fr 1fr;} }
+    label{display:block;font-weight:700;margin:2px 0 6px;}
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select, input[type="time"]{
+      width:100%;
+      height:var(--inputH);
+      border-radius:12px;
+      border:1px solid var(--border);
+      padding:10px 12px;
+      font-size:18px;
+      background:white;
+    }
+    textarea{height:auto;min-height:92px;resize:vertical;}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;}
+    .row > .field{flex:1;min-width:240px;}
+    .row > .field.small{min-width:180px;max-width:260px;}
+    .checkrow{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:8px;}
+    .checkrow label{margin:0;font-weight:700;display:flex;gap:10px;align-items:center;}
+    input[type="checkbox"]{width:26px;height:26px;}
+    details{border:1px solid var(--border);border-radius:14px;background:#fff;box-shadow:var(--shadow);overflow:hidden;}
+    summary{cursor:pointer;list-style:none;padding:14px;font-weight:800;display:flex;justify-content:space-between;align-items:center;}
+    summary::-webkit-details-marker{display:none;}
+    .details-body{padding:14px;border-top:1px solid var(--border);}
+    .pill{font-size:14px;font-weight:800;border:1px solid var(--border);border-radius:999px;padding:6px 10px;color:var(--muted);}
+    .inline-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+    .mini{height:40px;border-radius:12px;padding:0 12px;font-size:16px;}
+    .danger{border-color:#fecaca;background:#fff1f2;color:#7f1d1d;}
+    .hr{height:1px;background:var(--border);margin:12px 0;}
+
+    @media print{
+      body{background:#fff;}
+      .topbar{display:none !important;}
+      .wrap{max-width:none;margin:0;padding:0;}
+      .card, details{box-shadow:none;border:0;border-radius:0;}
+      input, textarea, select, button{display:none !important;}
+      .print-only{display:block !important;}
+      .no-print{display:none !important;}
+    }
+    .print-only{display:none;}
+    .print-section{margin:0 0 14px;}
+    .print-h{font-weight:900;font-size:16px;margin:0 0 6px;}
+    .print-kv div{margin:2px 0;}
+    .print-loc-title{font-weight:900;margin:10px 0 6px;border-top:1px solid #e5e7eb;padding-top:8px;}
+  
+    /* STEP 2 - elementi locali */
+    .elem{
+      border:1px dashed var(--border);
+      border-radius:14px;
+      padding:12px;
+      margin:10px 0 0;
+      background:#fff;
+    }
+    .elem-title{
+      font-weight:900;
+      margin:0 0 10px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+    }
+    .elem-subtitle{font-weight:850;margin:0 0 8px;color:var(--muted);}
+    .opt-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:8px 0 6px;}
+    .opt-row label{margin:0;font-weight:750;display:flex;gap:10px;align-items:center;}
+    .opt-row input[type="radio"], .opt-row input[type="checkbox"]{width:26px;height:26px;}
+    .defects-wrap{margin-top:8px;}
+    .photos-list{margin-top:8px;display:grid;gap:8px;}
+    .photo-item{display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid var(--border);border-radius:12px;padding:8px 10px;}
+    .photo-item small{color:var(--muted);font-weight:650;}
+    .photo-item button{height:34px;border-radius:10px;}
+
+  </style>
+</head>
+<body>
+  <div class="topbar no-print">
+    <div class="topbar-inner">
+      <button class="btn" id="btnExport">Esporta JSON</button>
+      <button class="btn" id="btnImport">Importa JSON</button>
+      <button class="btn primary" id="btnPrint">Stampa / Salva PDF</button>
+      <button class="btn danger" id="btnReset">Reset</button>
+      <div class="badge"><span>Stato</span> <small id="statusText">OK</small></div>
+      <input type="file" id="fileImport" accept="application/json" style="display:none" />
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>Verbale di constatazione dello stato dell’ente locato</h1>
+
+      <div class="checkrow">
+        <label><input type="checkbox" id="chkConsegna" checked> alla consegna</label>
+        <label><input type="checkbox" id="chkRiconsegna" checked> alla riconsegna</label>
+      </div>
+
+      <div class="row" style="margin-top:12px;">
+        <div class="field">
+          <label>Redatto il</label>
+          <input type="text" id="fldData" />
+        </div>
+        <div class="field small">
+          <label>alle ore</label>
+          <input type="time" id="fldOra" />
+        </div>
+      </div>
+
+      <div class="print-only print-section" id="printHeader"></div>
+    </div>
+
+    <div class="card">
+      <div class="grid cols2">
+        <div>
+          <label class="section-title">Locatore/i</label>
+          <textarea id="fldLocatore">Daniele Biasca-Caroni e Fosco Arizzoli
+Viale Monte Verità 3
+6612 Ascona</textarea>
+        </div>
+        <div>
+          <label class="section-title">Rappresentato da</label>
+          <textarea id="fldRappresentato" rows="3">DANIELE BIASCA-CARONI
+Viale Monte Verità 3
+6612 Ascona</textarea>
+        </div>
+      </div>
+      <div class="print-only print-section" id="printParti"></div>
+    </div>
+
+    <div class="card" id="cardInquiliniUsc">
+      <div class="row" style="justify-content:space-between;align-items:center;">
+        <div>
+          <div class="section-title">Inquilino/i uscente/i</div>
+          <div class="note">Visibile solo se “alla riconsegna” è selezionato.</div>
+        </div>
+        <button class="btn mini" id="btnAddUsc">➕ Aggiungi inquilino</button>
+      </div>
+      <div id="listUsc" style="margin-top:10px;"></div>
+      <div class="print-only print-section" id="printUsc"></div>
+    </div>
+
+    <div class="card" id="cardInquiliniEnt">
+      <div class="row" style="justify-content:space-between;align-items:center;">
+        <div>
+          <div class="section-title">Inquilino/i entrante/i</div>
+          <div class="note">Visibile solo se “alla consegna” è selezionato.</div>
+        </div>
+        <button class="btn mini" id="btnAddEnt">➕ Aggiungi inquilino</button>
+      </div>
+      <div id="listEnt" style="margin-top:10px;"></div>
+      <div class="print-only print-section" id="printEnt"></div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label class="section-title">Ente locato</label>
+          <select id="selStabile"></select>
+        </div>
+        <div class="field">
+          <label>Indirizzo stabile (modificabile)</label>
+          <input type="text" id="fldStabileAddr" />
+        </div>
+      </div>
+      <div class="inline-actions">
+        <button class="btn mini" id="btnAddStabile">➕ Aggiungi stabile</button>
+        <span class="pill">Salvataggio permanente (localStorage)</span>
+      </div>
+      <div class="print-only print-section" id="printStabile"></div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label>Tipologia unità</label>
+          <select id="selTipologia">
+            <option value="Monolocale">Monolocale</option>
+            <option value="2.5 locali">2.5 locali</option>
+            <option value="3.5 locali">3.5 locali</option>
+            <option value="4.5 locali">4.5 locali</option>
+            <option value="Altro">Altro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Piano</label>
+          <select id="selPiano">
+            <option value="PT">PT</option>
+            <option value="1 Piano">1 Piano</option>
+            <option value="2 Piano">2 Piano</option>
+            <option value="3 Piano">3 Piano</option>
+            <option value="4 Piano">4 Piano</option>
+            <option value="5 Piano">5 Piano</option>
+            <option value="6 Piano">6 Piano</option>
+            <option value="Altro">Altro</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <div class="field" id="wrapTipAlt" style="display:none;">
+          <label>Tipologia (Altro)</label>
+          <input type="text" id="fldTipAlt" />
+        </div>
+        <div class="field" id="wrapPianoAlt" style="display:none;">
+          <label>Piano (Altro)</label>
+          <input type="text" id="fldPianoAlt" />
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <label>Descrizione supplementare (facoltativa)</label>
+        <input type="text" id="fldDescSup" />
+      </div>
+      <div class="print-only print-section" id="printUnita"></div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:center;">
+        <div>
+          <div class="section-title">Persone presenti</div>
+          <div class="note">Locatore + inquilini autocompilati in base a consegna/riconsegna.</div>
+        </div>
+        <button class="btn mini" id="btnAddPres">➕ Aggiungi persona presente</button>
+      </div>
+      <div id="listPres" style="margin-top:10px;"></div>
+      <div class="print-only print-section" id="printPres"></div>
+    </div>
+
+    <div class="card">
+      <label>Osservazioni particolari</label>
+      <textarea id="fldOsservazioni"></textarea>
+      <div class="print-only print-section" id="printOss"></div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:center;">
+        <div>
+          <div class="section-title">Locali</div>
+          <div class="note">Step 1: struttura dinamica. Step 2: elementi dettagliati per ogni locale.</div>
+        </div>
+        <div class="inline-actions" style="margin-top:0;">
+          <button class="btn mini" id="btnAddBagno">➕ Aggiungi bagno</button>
+          <button class="btn mini" id="btnAddLocale">➕ Aggiungi locale</button>
+        </div>
+      </div>
+      <div id="localiWrap" style="margin-top:12px;"></div>
+      <div class="print-only print-section" id="printLocali"></div>
+    </div>
+
+    <div class="card print-only" id="printFirme">
+      <div class="print-h">Firme</div>
+      <div class="print-kv">
+        <div>Locatore / rappresentante: _____________________________</div>
+        <div>Inquilino uscente: _____________________________</div>
+        <div>Inquilino entrante: _____________________________</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  var STORAGE_KEY = "verbale_app_step2_v1";
+  var STORAGE_KEY_OLD = "verbale_app_step1_v1";
+  var STABILI_KEY = "verbale_app_stabili_custom_v1";
+
+  function normalizeRappresentato(s){
+    if(!s) return s;
+    // If a previous saved value was a single line, convert it to 3 lines for readability.
+    if(String(s).indexOf("\n") === -1){
+      var t = String(s).replace(/\s+/g, " ").trim();
+      var hasName = /DANIELE\s+BIASCA-?CARONI/i.test(t);
+      var hasStreet = /Viale\s+Monte\s+Verit[aà]\s+3/i.test(t);
+      var hasCity = /6612\s+Ascona/i.test(t) || /Ascona/i.test(t);
+      if(hasName && hasStreet && hasCity){
+        t = t
+          .replace(/\s*Viale\s+Monte\s+Verit[aà]\s+3\s*/i, "\nViale Monte Verità 3\n")
+          .replace(/\s*(6612\s+Ascona)\s*$/i, "\n$1");
+        return t.trim();
+      }
+    }
+    return String(s).trim();
+  }
+
+
+  function pad2(n){ return (n<10? "0"+n : ""+n); }
+  function formatDateIT(d){
+    var giorni = ["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"];
+    return giorni[d.getDay()] + " " + pad2(d.getDate()) + "." + pad2(d.getMonth()+1) + "." + d.getFullYear();
+  }
+  function nowTimeHHMM(){
+    var d = new Date();
+    return pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  }
+  function uid(){ return "id_" + Math.random().toString(16).slice(2) + "_" + Date.now(); }
+
+  var baseStabili = [
+    {name:"BALZAGO", addr:"Via Balzago 6, 6616 Losone"},
+    {name:"BEL ORIZZONTE", addr:"Strada Collina 25, 6612 Ascona"},
+    {name:"EBE ED EMILIO", addr:"Via ai Saleggi 5/7, 6600 Locarno"},
+    {name:"EDELWEISS", addr:"Via Sciaroni 1, 6600 Muralto"},
+    {name:"FAVORITA", addr:"Via San Gottardo 10, 6600 Muralto"},
+    {name:"IDEAL", addr:"Viale 1814 Nro. 7, 6512 Giubiasco"},
+    {name:"ISOSTAR", addr:"Via Ballerini 7, 6600 Locarno"},
+    {name:"RISORGIMENTO", addr:"Via Vorame 122, 6612 Ascona"},
+    {name:"VIA NESSI", addr:"Via Nessi 34a, 6600 Locarno"}
+  ];
+
+  function loadCustomStabili(){
+    try{
+      var raw = localStorage.getItem(STABILI_KEY);
+      var arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr.filter(x => x && x.name && x.addr) : [];
+    }catch(e){ return []; }
+  }
+  function saveCustomStabili(arr){ localStorage.setItem(STABILI_KEY, JSON.stringify(arr)); }
+  function allStabili(){
+    var merged = baseStabili.concat(loadCustomStabili());
+    merged.sort((a,b)=>(a.name||"").localeCompare(b.name||"", "it"));
+    return merged;
+  }
+
+  var el = {
+    chkConsegna: document.getElementById("chkConsegna"),
+    chkRiconsegna: document.getElementById("chkRiconsegna"),
+    fldData: document.getElementById("fldData"),
+    fldOra: document.getElementById("fldOra"),
+    fldLocatore: document.getElementById("fldLocatore"),
+    fldRappresentato: document.getElementById("fldRappresentato"),
+    cardUsc: document.getElementById("cardInquiliniUsc"),
+    cardEnt: document.getElementById("cardInquiliniEnt"),
+    listUsc: document.getElementById("listUsc"),
+    listEnt: document.getElementById("listEnt"),
+    btnAddUsc: document.getElementById("btnAddUsc"),
+    btnAddEnt: document.getElementById("btnAddEnt"),
+    selStabile: document.getElementById("selStabile"),
+    fldStabileAddr: document.getElementById("fldStabileAddr"),
+    btnAddStabile: document.getElementById("btnAddStabile"),
+    selTipologia: document.getElementById("selTipologia"),
+    selPiano: document.getElementById("selPiano"),
+    wrapTipAlt: document.getElementById("wrapTipAlt"),
+    wrapPianoAlt: document.getElementById("wrapPianoAlt"),
+    fldTipAlt: document.getElementById("fldTipAlt"),
+    fldPianoAlt: document.getElementById("fldPianoAlt"),
+    fldDescSup: document.getElementById("fldDescSup"),
+    btnAddPres: document.getElementById("btnAddPres"),
+    listPres: document.getElementById("listPres"),
+    fldOsservazioni: document.getElementById("fldOsservazioni"),
+    btnAddBagno: document.getElementById("btnAddBagno"),
+    btnAddLocale: document.getElementById("btnAddLocale"),
+    localiWrap: document.getElementById("localiWrap"),
+    btnExport: document.getElementById("btnExport"),
+    btnImport: document.getElementById("btnImport"),
+    btnPrint: document.getElementById("btnPrint"),
+    btnReset: document.getElementById("btnReset"),
+    fileImport: document.getElementById("fileImport"),
+    statusText: document.getElementById("statusText")
+  };
+
+  var state = null;
+
+  function defaultState(){
+    var d = new Date();
+    return {
+      tipo: {consegna:true, riconsegna:true},
+      data: formatDateIT(d),
+      ora: nowTimeHHMM(),
+      locatore: el.fldLocatore.value,
+      rappresentato: el.fldRappresentato.value,
+      inquiliniUsc: [],
+      inquiliniEnt: [],
+      stabile: {name:"ISOSTAR", addr:"Via Ballerini 7, 6600 Locarno"},
+      unita: {tipologia:"2.5 locali", tipAlt:"", piano:"PT", pianoAlt:"", descr:""},
+      personePresenti: [{id:uid(), nome:"Daniele Biasca-Caroni", ruolo:"Locatore", auto:true}],
+      osservazioni:"",
+      locali: buildDefaultLocali("2.5 locali")
+    };
+  }
+
+  function buildDefaultLocali(tipologia){
+    var locali = [];
+    locali.push({id:uid(), tipo:"porta_entrata", titolo:"Porta entrata"});
+    locali.push({id:uid(), tipo:"corridoio", titolo:"Corridoio", nonPresente:false});
+    locali.push({id:uid(), tipo:"cucina", titolo:"Cucina"});
+    locali.push({id:uid(), tipo:"bagno", titolo:"Bagno 1"});
+
+    if(tipologia === "Monolocale"){
+      locali.push({id:uid(), tipo:"stanza_soggiorno", titolo:"Stanza / Soggiorno", descr:""});
+    }else{
+      locali.push({id:uid(), tipo:"soggiorno", titolo:"Soggiorno"});
+      locali.push({id:uid(), tipo:"stanza", titolo:"Stanza 1", descr:""});
+      if(tipologia === "3.5 locali" || tipologia === "4.5 locali"){
+        locali.push({id:uid(), tipo:"stanza", titolo:"Stanza 2", descr:""});
+      }
+      if(tipologia === "4.5 locali"){
+        locali.push({id:uid(), tipo:"stanza", titolo:"Stanza 3", descr:""});
+      }
+    }
+    locali.push({id:uid(), tipo:"balcone", titolo:"Balcone 1", nonPresente:false});
+    return locali;
+  }
+
+  
+  function loadState(){
+    // Prefer step2 key; fallback to step1 key for migration
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    try{
+      var raw2 = localStorage.getItem(STORAGE_KEY_OLD);
+      return raw2 ? JSON.parse(raw2) : null;
+    }catch(e){ return null; }
+  }
+
+  function saveState(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){} }
+
+  var _saveTimer = null;
+  function renderPersonePresenti(){
+    el.listPres.innerHTML = "";
+    state.personePresenti.forEach(function(p, idx){
+      el.listPres.appendChild(personRow(p, function(){
+        // update is in-place
+        syncPersonePresenti();
+        saveStateDebouncedPlain();
+      }, function(){
+        // remove only if not auto
+        if(p.auto) return;
+        state.personePresenti.splice(idx,1);
+        syncPersonePresenti();
+        saveState();
+        renderPersonePresenti();
+        validateStatus();
+      }));
+    });
+  }
+
+  function saveStateDebouncedPlain(){
+    if(_saveTimer) clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(function(){
+      syncPersonePresenti();
+      saveState();
+      validateStatus();
+    }, 180);
+  }
+
+  function saveStateDebouncedPeople(){
+    if(_saveTimer) clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(function(){
+      syncPersonePresenti();
+      saveState();
+      validateStatus();
+      // update only the people list (safe for tenant typing)
+      renderPersonePresenti();
+    }, 180);
+  }
+
+
+  function ensureTipoValid(){
+    if(!el.chkConsegna.checked && !el.chkRiconsegna.checked) el.chkConsegna.checked = true;
+  }
+
+  function renderStabili(){
+    var opts = allStabili();
+    el.selStabile.innerHTML = "";
+    opts.forEach(function(x){
+      var o = document.createElement("option");
+      o.value = x.name;
+      o.textContent = x.name;
+      el.selStabile.appendChild(o);
+    });
+  }
+
+  function escapeHtml(str){
+    str = (str==null) ? "" : (""+str);
+    return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  }
+  function nl2br(str){ return (str||"").replace(/\n/g,"<br/>"); }
+
+  function firstLineBoldNl2br(str){
+    str = (str||"");
+    var lines = str.split(/\r?\n/);
+    var first = (lines.shift()||"").trim();
+    var rest = lines.join("\n");
+    var out = "";
+    if(first){
+      out += "<strong>"+escapeHtml(first)+"</strong>";
+    }
+    if(rest.trim()){
+      out += (out ? "<br/>" : "") + nl2br(escapeHtml(rest));
+    }
+    return out || "";
+  }
+
+  // ===== STEP 2: Elementi dei locali =====
+
+  function newDefects(){
+    return { on:false, desc:"", photos:[] }; // photos: [{name,type,size,dataUrl}]
+  }
+  function newStd(label, withNonPresente){
+    return { id:uid(), type:"standard", label:label, state:"", nonPresente: !!withNonPresente, defects:newDefects(), floorType:"", floorOther:"" };
+  }
+  function newWalls(label){ // pareti / soffitto
+    return { id:uid(), type:"walls", label:label, state:"", defects:newDefects() }; // state: pitturato | usura | danni
+  }
+  function newFloor(){
+    return { id:uid(), type:"floor", label:"Pavimenti", state:"", floorType:"piastrelle", floorOther:"", defects:newDefects() };
+  }
+  function newInternalDoor(){
+    return { id:uid(), type:"internal_door", label:"Porte interne", door:{state:"", defects:newDefects()}, frame:{state:"", defects:newDefects()} };
+  }
+  function newInternalKey(){
+    return { id:uid(), type:"internal_key", label:"Chiave porte interne", key:"", defects:newDefects() };
+  }
+  function newPortaBlocco(){
+    return { id:uid(), type:"porta_blocco", label:"PORTA", door:{state:"", defects:newDefects()}, frame:{state:"", defects:newDefects()} };
+  }
+  function newPortaLocaleNP(){
+    // Porta principale del locale con opzioni "porte interne" + possibilità "non presente"
+    return { id:uid(), type:"porta_locale_np", label:"PORTA", nonPresente:false, door:{state:"", defects:newDefects()}, frame:{state:"", defects:newDefects()} };
+  }
+  function newVascaPresence(){
+    return { id:uid(), type:"vasca_presence", label:"Vasca da bagno", present:false };
+  }
+  function newBalParapetto(){
+    return { id:uid(), type:"standard", label:"Parapetto / ringhiera", state:"", nonPresente:false, defects:newDefects() };
+  }
+  function newBalStatoGenerale(){
+    return { id:uid(), type:"balcone_stato", label:"Stato generale", state:"", defects:newDefects() }; // state: nuovo | usura | difetti
+  }
+
+  function buildDefaultItemsForLocale(loc){
+    // Eccezione: balcone non ha PORTA obbligatoria
+    if(loc.tipo === "balcone"){
+      return [ newBalParapetto(), newBalStatoGenerale() ];
+    }
+
+    var items = [];
+    // 1) PORTA sempre primo elemento
+    // Corridoio: la porta può essere "non presente" e usa opzioni tipo "porte interne"
+    if(loc.tipo === "corridoio") items.push(newPortaLocaleNP());
+    else items.push(newPortaBlocco());
+
+    // Elementi generali
+    items.push(newFloor());
+    items.push(newWalls("Pareti"));
+    items.push(newWalls("Soffitto"));
+
+    // Cucina
+    if(loc.tipo === "cucina"){
+      items.push(newStd("Porta cucina", true));
+      items.push(newStd("Finestra", true));
+      items.push(newStd("Tapparelle", true));
+      items.push(newStd("Plafoniera", true));
+    }
+
+    // Bagno
+    if(loc.tipo === "bagno"){
+      items.push(newStd("Finestra", true));
+      items.push(newStd("Tapparella", true));
+      items.push(newStd("Plafoniera", true));
+      items.push(newVascaPresence());
+      // Accessori vasca / box doccia gestiti in render in base a present
+      items.push({ id:uid(), type:"vasca_accessori", label:"Accessori vasca", state:"", defects:newDefects() });
+      items.push({ id:uid(), type:"box_doccia", label:"Box doccia (senza tenda)", state:"", defects:newDefects() });
+    }
+
+    return items;
+  }
+
+  function ensureLocaliItems(){
+    (state.locali||[]).forEach(function(loc){
+      if(loc && loc.tipo==="porta_entrata"){
+        ensurePortaEntrataLocale(loc);
+        // Evita doppia struttura: per Porta entrata usiamo il blocco speciale, non la lista standard di items
+        loc.items = [];
+      }
+      if(loc.nonPresente == null){
+        // default per i locali che supportano "non presente"
+        if(loc.tipo==="corridoio") loc.nonPresente = false;
+      }
+      if(!loc.items || !Array.isArray(loc.items) || !loc.items.length){
+        loc.items = buildDefaultItemsForLocale(loc);
+      }else{
+        // Migrazione: rimuovi eventuali sezioni ridondanti "Porte interne" e "Chiave porte interne"
+        loc.items = (loc.items||[]).filter(function(it){
+          return it && it.type !== "internal_door" && it.type !== "internal_key";
+        });
+        // Migrazione: nel corridoio la porta principale deve usare lo schema "porte interne" e può essere non presente
+        if(loc.tipo==="corridoio" && loc.items.length && loc.items[0].type==="porta_blocco"){
+          loc.items[0] = newPortaLocaleNP();
+        }
+      }
+      // Mantieni coerenza bagno: se non presente, comunque items restano ma non stampati/mostrati (gestito da UI)
+    });
+  }
+
+  
+  // ===== STEP 2: Porta entrata (locale speciale) =====
+  function portaEntrataDefault(){
+    return {
+      porta:{ state:"", defects:newDefects() },
+      telaio:{ state:"", defects:newDefects() },
+      serratura:{ state:"", defects:newDefects() },
+      citofono:{ state:"", defects:newDefects(), mode:"" }, // mode: nuovo | normale usura | non presente
+      chiavi:{
+        standard:false, standard_n:"",
+        sicurezza:false, sicurezza_n:"",
+        combinata:false, combinata_n:"",
+        registrata:false, registrata_n:"",
+        note:""
+      }
+    };
+  }
+
+  function ensurePortaEntrataLocale(loc){
+    if(!loc) return;
+    if(!loc.portaEntrata || typeof loc.portaEntrata !== "object"){
+      loc.portaEntrata = portaEntrataDefault();
+    }else{
+      // Ensure sub-structures exist (backward safety)
+      if(!loc.portaEntrata.porta) loc.portaEntrata.porta = { state:"", defects:newDefects() };
+      if(!loc.portaEntrata.telaio) loc.portaEntrata.telaio = { state:"", defects:newDefects() };
+      if(!loc.portaEntrata.serratura) loc.portaEntrata.serratura = { state:"", defects:newDefects() };
+      if(!loc.portaEntrata.citofono) loc.portaEntrata.citofono = { state:"", defects:newDefects(), mode:"" };
+      if(!loc.portaEntrata.chiavi) loc.portaEntrata.chiavi = portaEntrataDefault().chiavi;
+      // Ensure defects objects
+      ["porta","telaio","serratura","citofono"].forEach(function(k){
+        var b = loc.portaEntrata[k];
+        if(!b.defects) b.defects = newDefects();
+        if(typeof b.state !== "string") b.state = "";
+      });
+      if(typeof loc.portaEntrata.citofono.mode !== "string") loc.portaEntrata.citofono.mode = "";
+    }
+  }
+
+  function portaEntrataHasData(pe){
+    try{
+      if(!pe) return false;
+      if(pe.porta && (pe.porta.state || pe.porta.defects.on || (pe.porta.defects.desc||"").trim() || (pe.porta.defects.photos||[]).length)) return true;
+      if(pe.telaio && (pe.telaio.state || pe.telaio.defects.on || (pe.telaio.defects.desc||"").trim() || (pe.telaio.defects.photos||[]).length)) return true;
+      if(pe.serratura && (pe.serratura.state || pe.serratura.defects.on || (pe.serratura.defects.desc||"").trim() || (pe.serratura.defects.photos||[]).length)) return true;
+      if(pe.citofono && (pe.citofono.mode || pe.citofono.defects.on || (pe.citofono.defects.desc||"").trim() || (pe.citofono.defects.photos||[]).length)) return true;
+      if(pe.chiavi){
+        if(pe.chiavi.standard || pe.chiavi.registrata || pe.chiavi.sicurezza || pe.chiavi.combinata) return true;
+        if((pe.chiavi.standard_n||"").trim() || (pe.chiavi.registrata_n||"").trim() || (pe.chiavi.sicurezza_n||"").trim() || (pe.chiavi.combinata_n||"").trim()) return true;
+        if((pe.chiavi.note||"").trim()) return true;
+      }
+      return false;
+    }catch(e){ return false; }
+  }
+
+  function printPortaEntrata(pe){
+    if(!pe) return "";
+    function valStd(v){
+      if(v==="nuovo") return "nuovo";
+      if(v==="normale usura") return "normale usura";
+      if(v==="usura") return "normale usura";
+      return v||"";
+    }
+    function defLine(def){
+      if(!def || !def.on) return "";
+      var desc = (def.desc||"").trim() || "Difetti riscontrati";
+      return '<div style="margin-left:14px;"><em>'+escapeHtml(desc)+'</em></div>';
+    }
+
+    var porta = pe.porta || {};
+    var telaio = pe.telaio || {};
+    var serratura = pe.serratura || {};
+    var citofono = pe.citofono || {};
+    var chiavi = pe.chiavi || {};
+
+    var out = "";
+    out += '<div><strong>PORTA (porta):</strong> '+escapeHtml(valStd(porta.state||""))+'</div>';
+    out += defLine(porta.defects);
+
+    out += '<div><strong>PORTA (telaio):</strong> '+escapeHtml(valStd(telaio.state||""))+'</div>';
+    out += defLine(telaio.defects);
+
+    out += '<div><strong>Serratura:</strong> '+escapeHtml(valStd(serratura.state||""))+'</div>';
+    out += defLine(serratura.defects);
+
+    var cm = (citofono.mode||"");
+    out += '<div><strong>Campanello / Citofono:</strong> '+escapeHtml(cm)+'</div>';
+    if(cm !== "non presente") out += defLine(citofono.defects);
+
+    // Chiavi
+    var parts = [];
+    function pushKey(label, on, n){
+      if(!on) return;
+      var t = label;
+      var nn = (n||"").toString().trim();
+      if(nn) t += " ("+nn+")";
+      parts.push(t);
+    }
+    pushKey("Chiave standard", !!chiavi.standard, chiavi.standard_n);
+    pushKey("Chiave di sicurezza aggiuntiva", !!chiavi.sicurezza, chiavi.sicurezza_n);
+    pushKey("Chiave combinata app. e portone", !!chiavi.combinata, chiavi.combinata_n);
+    pushKey("Chiave registrata", !!chiavi.registrata, chiavi.registrata_n);
+
+    out += '<div><strong>Chiavi:</strong> '+escapeHtml(parts.length ? parts.join(", ") : "")+'</div>';
+    if((chiavi.note||"").trim()){
+      out += '<div style="margin-left:14px;"><em>'+escapeHtml(chiavi.note.trim())+'</em></div>';
+    }
+
+    return out;
+  }
+
+
+
+  function saveLiteDebounced(){
+    if(_saveTimer) clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(function(){
+      syncPersonePresenti();
+      saveState();
+      validateStatus();
+      refreshPrint();
+    }, 180);
+  }
+
+  function fileToDataUrl(file){
+    return new Promise(function(resolve, reject){
+      var reader = new FileReader();
+      reader.onload = function(){ resolve(String(reader.result||"")); };
+      reader.onerror = function(){ reject(reader.error || new Error("FileReader error")); };
+      reader.readAsDataURL(file);
+    });
+  }
+
+
+  function inquilinoRow(q, isUsc, onChange, onDelete){
+    var wrap = document.createElement("div");
+    wrap.className = "card";
+    wrap.style.boxShadow = "none";
+    wrap.style.borderStyle = "dashed";
+    wrap.style.margin = "10px 0 0";
+
+    var grid = document.createElement("div");
+    grid.className = "grid cols2";
+
+    function field(label, type, val, setter){
+      var d = document.createElement("div");
+      var l = document.createElement("label"); l.textContent = label;
+      var i = document.createElement("input"); i.type = type; i.value = val || "";
+      i.addEventListener("input", function(){ setter(i.value); if(onChange) onChange(); });
+      d.appendChild(l); d.appendChild(i);
+      return d;
+    }
+
+    grid.appendChild(field("Nome e Cognome (obbligatorio)", "text", q.nome, v => q.nome=v));
+    grid.appendChild(field("Telefono", "tel", q.tel, v => q.tel=v));
+    grid.appendChild(field("Email", "email", q.email, v => q.email=v));
+    if(isUsc) grid.appendChild(field("Nuovo indirizzo", "text", q.nuovoInd, v => q.nuovoInd=v));
+
+    var actions = document.createElement("div");
+    actions.className = "inline-actions";
+    var del = document.createElement("button");
+    del.className = "btn mini danger";
+    del.textContent = "Elimina";
+    del.addEventListener("click", onDelete);
+    actions.appendChild(del);
+
+    wrap.appendChild(grid);
+    wrap.appendChild(actions);
+    return wrap;
+  }
+
+  function personRow(p, onChange, onDelete){
+    var wrap = document.createElement("div");
+    wrap.className = "card";
+    wrap.style.boxShadow = "none";
+    wrap.style.borderStyle = "dashed";
+    wrap.style.margin = "10px 0 0";
+
+    var row = document.createElement("div");
+    row.className = "row";
+
+    var f1 = document.createElement("div");
+    f1.className = "field";
+    var l1 = document.createElement("label"); l1.textContent = "Nome";
+    var i1 = document.createElement("input"); i1.type="text"; i1.value = p.nome || "";
+    i1.addEventListener("input", function(){ p.nome=i1.value; onChange(); });
+    f1.appendChild(l1); f1.appendChild(i1);
+
+    var f2 = document.createElement("div");
+    f2.className = "field small";
+    var l2 = document.createElement("label"); l2.textContent = "Ruolo";
+    var i2 = document.createElement("input"); i2.type="text"; i2.value = p.ruolo || "";
+    i2.addEventListener("input", function(){ p.ruolo=i2.value; onChange(); });
+    f2.appendChild(l2); f2.appendChild(i2);
+
+    var del = document.createElement("button");
+    del.className = "btn mini danger";
+    del.textContent = p.auto ? "Auto" : "Elimina";
+    del.disabled = !!p.auto;
+    del.style.opacity = p.auto ? "0.5" : "1";
+    del.addEventListener("click", function(){ if(!p.auto) onDelete(); });
+
+    row.appendChild(f1); row.appendChild(f2); row.appendChild(del);
+    wrap.appendChild(row);
+    return wrap;
+  }
+
+  function syncPersonePresenti(){
+    var custom = (state.personePresenti||[]).filter(p => !p.auto);
+    var base = [{id:uid(), nome:"Daniele Biasca-Caroni", ruolo:"Locatore", auto:true}];
+    function addFrom(list, ruolo){
+      (list||[]).forEach(function(x){
+        var nm = (x.nome||"").trim();
+        if(nm) base.push({id:uid(), nome:nm, ruolo:ruolo, auto:true});
+      });
+    }
+    if(state.tipo.consegna) addFrom(state.inquiliniEnt, "Inquilino entrante");
+    if(state.tipo.riconsegna) addFrom(state.inquiliniUsc, "Inquilino uscente");
+    state.personePresenti = base.concat(custom);
+  }
+
+
+  function ensureTenantRows(){
+    if(state.tipo.riconsegna && (!state.inquiliniUsc || state.inquiliniUsc.length===0)){
+      state.inquiliniUsc = [{id:uid(), nome:"", tel:"", email:"", nuovoInd:""}];
+    }
+    if(state.tipo.consegna && (!state.inquiliniEnt || state.inquiliniEnt.length===0)){
+      state.inquiliniEnt = [{id:uid(), nome:"", tel:"", email:""}];
+    }
+  }
+
+  function renderInquilini(){
+    ensureTenantRows();
+    el.cardUsc.style.display = state.tipo.riconsegna ? "" : "none";
+    el.cardEnt.style.display = state.tipo.consegna ? "" : "none";
+
+    el.listUsc.innerHTML = "";
+    state.inquiliniUsc.forEach(function(q, idx){
+      el.listUsc.appendChild(inquilinoRow(q, true, saveStateDebouncedPeople, function(){
+        state.inquiliniUsc.splice(idx,1); persistAndRefresh();
+      }));
+    });
+
+    el.listEnt.innerHTML = "";
+    state.inquiliniEnt.forEach(function(q, idx){
+      el.listEnt.appendChild(inquilinoRow(q, false, saveStateDebouncedPeople, function(){
+        state.inquiliniEnt.splice(idx,1); persistAndRefresh();
+      }));
+    });
+  }
+
+  function renderTipologiaExtras(){
+    el.wrapTipAlt.style.display = (state.unita.tipologia === "Altro") ? "" : "none";
+    el.wrapPianoAlt.style.display = (state.unita.piano === "Altro") ? "" : "none";
+  }
+
+  
+  function rebuildLocaliForTipologia(){
+    var old = Array.isArray(state.locali) ? state.locali : [];
+    var oldMap = {};
+    old.forEach(function(l){ oldMap[l.titolo] = l; });
+
+    var bagniCount = old.filter(l => l.tipo==="bagno").length || 1;
+    var custom = old.filter(l => l.tipo==="custom");
+
+    var newLocali = buildDefaultLocali(state.unita.tipologia);
+
+    // remove bagno and re-add count
+    var firstBagnoIdx = newLocali.findIndex(l => l.tipo==="bagno");
+    newLocali = newLocali.filter(l => l.tipo!=="bagno");
+    for(var i=0;i<bagniCount;i++){
+      newLocali.splice(firstBagnoIdx+i, 0, {id:uid(), tipo:"bagno", titolo:"Bagno "+(i+1)});
+    }
+
+    // inject custom after balcony
+    var balcIdx = newLocali.findIndex(l => l.tipo==="balcone");
+    if(balcIdx>=0) newLocali.splice(balcIdx+1, 0, ...custom);
+    else newLocali.push(...custom);
+
+    // Preserve data when titles match (descr, nonPresente, items)
+    newLocali.forEach(function(nl){
+      var ol = oldMap[nl.titolo];
+      if(!ol) return;
+      if(ol.descr) nl.descr = ol.descr;
+      if(typeof ol.nonPresente === "boolean") nl.nonPresente = ol.nonPresente;
+      if(Array.isArray(ol.items) && ol.items.length) nl.items = ol.items;
+    });
+
+    state.locali = newLocali;
+    ensureLocaliItems();
+  }
+
+
+  
+  function renderLocali(){
+    ensureLocaliItems();
+    el.localiWrap.innerHTML = "";
+
+    function radio(name, value, checked, onChange){
+      var lab = document.createElement("label");
+      var r = document.createElement("input");
+      r.type="radio"; r.name=name; r.value=value; r.checked = !!checked;
+      r.addEventListener("change", function(){ if(r.checked) onChange(value); });
+      lab.appendChild(r);
+      lab.appendChild(document.createTextNode(" "+value));
+      return lab;
+    }
+
+    function checkbox(text, checked, onChange){
+      var lab = document.createElement("label");
+      var c = document.createElement("input");
+      c.type="checkbox"; c.checked=!!checked;
+      c.addEventListener("change", function(){ onChange(c.checked); });
+      lab.appendChild(c);
+      lab.appendChild(document.createTextNode(" "+text));
+      return lab;
+    }
+
+    function renderDefectsControls(defObj, container){
+      container.innerHTML = "";
+      var row = document.createElement("div");
+      row.className = "opt-row";
+      row.appendChild(checkbox("riscontrati difetti", !!defObj.on, function(v){
+        defObj.on = v;
+        if(!v){
+          // Mantengo descrizione e foto (non cancello) per sicurezza; restano nascoste
+        }
+        saveLiteDebounced();
+        renderDefectsControls(defObj, container);
+      }));
+      container.appendChild(row);
+
+      if(defObj.on){
+        var l = document.createElement("label"); l.textContent="Descrizione difetti";
+        var t = document.createElement("textarea"); t.value = defObj.desc || "";
+        t.addEventListener("input", function(){ defObj.desc = t.value; saveLiteDebounced(); });
+        container.appendChild(l); container.appendChild(t);
+
+        var actions = document.createElement("div");
+        actions.className="inline-actions";
+        var add = document.createElement("button");
+        add.className="btn mini";
+        add.type="button";
+        add.textContent="➕ Foto";
+        var file = document.createElement("input");
+        file.type="file"; file.accept="image/*"; file.multiple=true; file.style.display="none";
+        add.addEventListener("click", function(){ file.click(); });
+        file.addEventListener("change", async function(){
+          var files = Array.from(file.files||[]);
+          for(const f of files){
+            try{
+              var dataUrl = await fileToDataUrl(f);
+              defObj.photos.push({name:f.name, type:f.type, size:f.size, dataUrl:dataUrl});
+            }catch(e){}
+          }
+          file.value="";
+          saveLiteDebounced();
+          renderDefectsControls(defObj, container);
+        });
+        actions.appendChild(add);
+        actions.appendChild(file);
+        container.appendChild(actions);
+
+        if(defObj.photos && defObj.photos.length){
+          var list = document.createElement("div");
+          list.className="photos-list";
+          defObj.photos.forEach(function(ph, i){
+            var it = document.createElement("div");
+            it.className="photo-item";
+            var left = document.createElement("div");
+            left.innerHTML = "<div><strong>"+escapeHtml(ph.name||("Foto "+(i+1)))+"</strong></div><small>"+escapeHtml((ph.size?Math.round(ph.size/1024):0)+" KB")+"</small>";
+            var rm = document.createElement("button");
+            rm.className="btn mini danger";
+            rm.type="button";
+            rm.textContent="Rimuovi";
+            rm.addEventListener("click", function(){
+              defObj.photos.splice(i,1);
+              saveLiteDebounced();
+              renderDefectsControls(defObj, container);
+            });
+            it.appendChild(left); it.appendChild(rm);
+            list.appendChild(it);
+          });
+          container.appendChild(list);
+        }
+      }
+    }
+
+    function renderStandard(elmObj, body, allowNonPresente){
+      var box = document.createElement("div");
+      box.className="elem";
+
+      var head = document.createElement("div");
+      head.className="elem-title";
+      head.innerHTML = "<span>"+escapeHtml(elmObj.label||"")+"</span>";
+      box.appendChild(head);
+
+      if(allowNonPresente){
+        var nr = document.createElement("div");
+        nr.className="opt-row";
+        nr.appendChild(checkbox("non presente", !!elmObj.nonPresente, function(v){
+          elmObj.nonPresente = v;
+          saveLiteDebounced();
+          renderLocali(); // rerender locale list (solo su toggle)
+        }));
+        box.appendChild(nr);
+      }
+
+      if(!elmObj.nonPresente){
+        var opts = document.createElement("div");
+        opts.className="opt-row";
+        var group = "g_"+elmObj.id;
+        opts.appendChild(radio(group, "nuovo", elmObj.state==="nuovo", function(v){ elmObj.state=v; saveLiteDebounced(); }));
+        opts.appendChild(radio(group, "normale usura", elmObj.state==="normale usura", function(v){ elmObj.state=v; saveLiteDebounced(); }));
+        box.appendChild(opts);
+
+        var defWrap = document.createElement("div");
+        defWrap.className="defects-wrap";
+        renderDefectsControls(elmObj.defects, defWrap);
+        box.appendChild(defWrap);
+      }
+
+      body.appendChild(box);
+    }
+
+    function renderFloor(elmObj, body){
+      var box = document.createElement("div");
+      box.className="elem";
+
+      var head = document.createElement("div");
+      head.className="elem-title";
+      head.innerHTML = "<span>"+escapeHtml(elmObj.label||"Pavimenti")+"</span>";
+      box.appendChild(head);
+
+      var opts = document.createElement("div");
+      opts.className="opt-row";
+      var group = "g_"+elmObj.id;
+      opts.appendChild(radio(group, "nuovo", elmObj.state==="nuovo", function(v){ elmObj.state=v; saveLiteDebounced(); }));
+      opts.appendChild(radio(group, "normale usura", elmObj.state==="normale usura", function(v){ elmObj.state=v; saveLiteDebounced(); }));
+      box.appendChild(opts);
+
+      var l = document.createElement("label"); l.textContent="Tipologia";
+      var sel = document.createElement("select");
+      ["piastrelle","parquet","sintetico","altro"].forEach(function(v){
+        var o = document.createElement("option"); o.value=v; o.textContent=v;
+        sel.appendChild(o);
+      });
+      sel.value = elmObj.floorType || "piastrelle";
+      sel.addEventListener("change", function(){ elmObj.floorType = sel.value; saveLiteDebounced(); renderLocali(); });
+      box.appendChild(l); box.appendChild(sel);
+
+      if((elmObj.floorType||"") === "altro"){
+        var l2 = document.createElement("label"); l2.textContent="Specificare";
+        var i = document.createElement("input"); i.type="text"; i.value = elmObj.floorOther || "";
+        i.addEventListener("input", function(){ elmObj.floorOther = i.value; saveLiteDebounced(); });
+        box.appendChild(l2); box.appendChild(i);
+      }
+
+      var defWrap = document.createElement("div");
+      defWrap.className="defects-wrap";
+      renderDefectsControls(elmObj.defects, defWrap);
+      box.appendChild(defWrap);
+
+      body.appendChild(box);
+    }
+
+    function renderWalls(elmObj, body){
+      var box = document.createElement("div");
+      box.className="elem";
+
+      var head = document.createElement("div");
+      head.className="elem-title";
+      head.innerHTML = "<span>"+escapeHtml(elmObj.label||"")+"</span>";
+      box.appendChild(head);
+
+      var opts = document.createElement("div");
+      opts.className="opt-row";
+      var group = "g_"+elmObj.id;
+      opts.appendChild(radio(group, "pitturato a nuovo", elmObj.state==="pitturato a nuovo", function(v){ elmObj.state=v; saveLiteDebounced(); }));
+      opts.appendChild(radio(group, "normale usura", elmObj.state==="normale usura", function(v){ elmObj.state=v; saveLiteDebounced(); }));
+      opts.appendChild(radio(group, "danneggiamenti", elmObj.state==="danneggiamenti", function(v){
+        elmObj.state=v;
+        if(v==="danneggiamenti") elmObj.defects.on = true;
+        saveLiteDebounced();
+        renderLocali();
+      }));
+      box.appendChild(opts);
+
+      var defWrap = document.createElement("div");
+      defWrap.className="defects-wrap";
+      renderDefectsControls(elmObj.defects, defWrap);
+      box.appendChild(defWrap);
+
+      body.appendChild(box);
+    }
+
+    function renderInternalDoor(elmObj, body){
+      var box = document.createElement("div");
+      box.className="elem";
+
+      var head = document.createElement("div");
+      head.className="elem-title";
+      head.innerHTML = "<span>"+escapeHtml(elmObj.label||"Porte interne")+"</span>";
+      box.appendChild(head);
+
+      function subBlock(title, sub){
+        var subTitle = document.createElement("div");
+        subTitle.className="elem-subtitle";
+        subTitle.textContent=title;
+        box.appendChild(subTitle);
+
+        var opts = document.createElement("div");
+        opts.className="opt-row";
+        var group = "g_"+elmObj.id+"_"+title;
+        opts.appendChild(radio(group, "laccatura nuova", sub.state==="laccatura nuova", function(v){ sub.state=v; saveLiteDebounced(); }));
+        opts.appendChild(radio(group, "normale usura", sub.state==="normale usura", function(v){ sub.state=v; saveLiteDebounced(); }));
+        opts.appendChild(radio(group, "danneggiamento evidente", sub.state==="danneggiamento evidente", function(v){
+          sub.state=v;
+          if(v==="danneggiamento evidente") sub.defects.on = true;
+          saveLiteDebounced();
+          renderLocali();
+        }));
+        box.appendChild(opts);
+
+        var defWrap = document.createElement("div");
+        defWrap.className="defects-wrap";
+        renderDefectsControls(sub.defects, defWrap);
+        box.appendChild(defWrap);
+      }
+
+      subBlock("Porta", elmObj.door);
+      box.appendChild(document.createElement("div")).className="hr";
+      subBlock("Telaio porta", elmObj.frame);
+
+      body.appendChild(box);
+    }
+
+    function renderInternalKey(elmObj, body){
+      var box = document.createElement("div");
+      box.className="elem";
+
+      var head = document.createElement("div");
+      head.className="elem-title";
+      head.innerHTML = "<span>"+escapeHtml(elmObj.label||"Chiave porte interne")+"</span>";
+      box.appendChild(head);
+
+      var opts = document.createElement("div");
+      opts.className="opt-row";
+      var g = "g_"+elmObj.id;
+      opts.appendChild(radio(g, "chiave presente", elmObj.key==="presente", function(){ elmObj.key="presente"; saveLiteDebounced(); }));
+      opts.appendChild(radio(g, "manca chiave", elmObj.key==="manca", function(){
+        elmObj.key="manca";
+        elmObj.defects.on = true;
+        if(!elmObj.defects.desc || !elmObj.defects.desc.trim()) elmObj.defects.desc = "manca chiave";
+        saveLiteDebounced();
+        renderLocali();
+      }));
+      box.appendChild(opts);
+
+      var defWrap = document.createElement("div");
+      defWrap.className="defects-wrap";
+      renderDefectsControls(elmObj.defects, defWrap);
+      box.appendChild(defWrap);
+
+      body.appendChild(box);
+    }
+
+    function renderPortaBlocco(elmObj, body){
+      var box = document.createElement("div");
+      box.className="elem";
+
+      var head = document.createElement("div");
+      head.className="elem-title";
+      head.innerHTML = "<span>"+escapeHtml(elmObj.label||"PORTA")+"</span>";
+      box.appendChild(head);
+
+      function subBlock(title, sub){
+        var subTitle = document.createElement("div");
+        subTitle.className="elem-subtitle";
+        subTitle.textContent=title;
+        box.appendChild(subTitle);
+
+        var opts = document.createElement("div");
+        opts.className="opt-row";
+        var group = "g_"+elmObj.id+"_"+title;
+        opts.appendChild(radio(group, "nuovo", sub.state==="nuovo", function(v){ sub.state=v; saveLiteDebounced(); }));
+        opts.appendChild(radio(group, "normale usura", sub.state==="normale usura", function(v){ sub.state=v; saveLiteDebounced(); }));
+        box.appendChild(opts);
+
+        var defWrap = document.createElement("div");
+        defWrap.className="defects-wrap";
+        renderDefectsControls(sub.defects, defWrap);
+        box.appendChild(defWrap);
+      }
+
+      subBlock("Porta", elmObj.door);
+      box.appendChild(document.createElement("div")).className="hr";
+      subBlock("Telaio porta", elmObj.frame);
+
+      body.appendChild(box);
+    }
+
+    function renderPortaLocaleNP(elmObj, body){
+      var box = document.createElement("div");
+      box.className="elem";
+
+      var head = document.createElement("div");
+      head.className="elem-title";
+      head.innerHTML = "<span>"+escapeHtml(elmObj.label||"PORTA")+"</span>";
+      box.appendChild(head);
+
+      var nr = document.createElement("div");
+      nr.className="opt-row";
+      nr.appendChild(checkbox("non presente", !!elmObj.nonPresente, function(v){
+        elmObj.nonPresente = v;
+        saveLiteDebounced();
+        renderLocali();
+      }));
+      box.appendChild(nr);
+
+      if(!elmObj.nonPresente){
+        function subBlock(title, sub){
+          var subTitle = document.createElement("div");
+          subTitle.className="elem-subtitle";
+          subTitle.textContent=title;
+          box.appendChild(subTitle);
+
+          var opts = document.createElement("div");
+          opts.className="opt-row";
+          var group = "g_"+elmObj.id+"_"+title;
+          opts.appendChild(radio(group, "laccatura nuova", sub.state==="laccatura nuova", function(v){ sub.state=v; saveLiteDebounced(); }));
+          opts.appendChild(radio(group, "normale usura", sub.state==="normale usura", function(v){ sub.state=v; saveLiteDebounced(); }));
+          opts.appendChild(radio(group, "danneggiamento evidente", sub.state==="danneggiamento evidente", function(v){
+            sub.state=v;
+            if(v==="danneggiamento evidente") sub.defects.on = true;
+            saveLiteDebounced();
+            renderLocali();
+          }));
+          box.appendChild(opts);
+
+          var defWrap = document.createElement("div");
+          defWrap.className="defects-wrap";
+          renderDefectsControls(sub.defects, defWrap);
+          box.appendChild(defWrap);
+        }
+
+        subBlock("Porta", elmObj.door);
+        box.appendChild(document.createElement("div")).className="hr";
+        subBlock("Telaio porta", elmObj.frame);
+      }
+
+      body.appendChild(box);
+    }
+
+    function renderVascaPresence(elmObj, body){
+      var box = document.createElement("div");
+      box.className="elem";
+      var head = document.createElement("div");
+      head.className="elem-title";
+      head.innerHTML = "<span>"+escapeHtml(elmObj.label||"Vasca da bagno")+"</span>";
+      box.appendChild(head);
+
+      var opts = document.createElement("div");
+      opts.className="opt-row";
+      var g = "g_"+elmObj.id;
+      opts.appendChild(checkbox("presente", !!elmObj.present, function(v){ elmObj.present=v; saveLiteDebounced(); renderLocali(); }));
+      opts.appendChild(checkbox("non presente", !elmObj.present, function(v){
+        // se clicco "non presente" -> present=false
+        if(v){ elmObj.present=false; saveLiteDebounced(); renderLocali(); }
+      }));
+      box.appendChild(opts);
+      body.appendChild(box);
+    }
+
+    function renderBalconeStato(elmObj, body){
+      var box = document.createElement("div");
+      box.className="elem";
+      var head = document.createElement("div");
+      head.className="elem-title";
+      head.innerHTML = "<span>"+escapeHtml(elmObj.label||"Stato generale")+"</span>";
+      box.appendChild(head);
+
+      var opts = document.createElement("div");
+      opts.className="opt-row";
+      var group = "g_"+elmObj.id;
+      opts.appendChild(radio(group, "nuovo", elmObj.state==="nuovo", function(v){ elmObj.state=v; saveLiteDebounced(); }));
+      opts.appendChild(radio(group, "normale usura", elmObj.state==="normale usura", function(v){ elmObj.state=v; saveLiteDebounced(); }));
+      opts.appendChild(radio(group, "difetti riscontrati", elmObj.state==="difetti riscontrati", function(v){
+        elmObj.state=v;
+        elmObj.defects.on = true;
+        saveLiteDebounced();
+        renderLocali();
+      }));
+      box.appendChild(opts);
+
+      var defWrap = document.createElement("div");
+      defWrap.className="defects-wrap";
+      renderDefectsControls(elmObj.defects, defWrap);
+      box.appendChild(defWrap);
+
+      body.appendChild(box);
+    }
+
+    function renderSimpleStdNoNonPresente(elmObj, body){
+      // standard senza non presente
+      elmObj.nonPresente = false;
+      renderStandard(elmObj, body, false);
+    }
+
+    state.locali.forEach(function(loc, idx){
+      var d = document.createElement("details");
+      var s = document.createElement("summary");
+
+      var pillTxt = "Step 2";
+      if(loc.tipo==="balcone" || loc.tipo==="corridoio"){
+        pillTxt = loc.nonPresente ? "Non presente" : "Presente";
+      }
+      s.innerHTML = '<span>'+escapeHtml(loc.titolo)+'</span><span class="pill">'+escapeHtml(pillTxt)+'</span>';
+      d.appendChild(s);
+
+      var body = document.createElement("div");
+      body.className = "details-body";
+
+      // locale-level toggles
+      if(loc.tipo === "balcone"){
+        var lab = document.createElement("label");
+        lab.style.display="flex"; lab.style.gap="10px"; lab.style.alignItems="center";
+        var c = document.createElement("input"); c.type="checkbox"; c.checked = !!loc.nonPresente;
+        c.addEventListener("change", function(){ loc.nonPresente = c.checked; saveLiteDebounced(); renderLocali(); });
+        lab.appendChild(c);
+        lab.appendChild(document.createTextNode("Balcone non presente"));
+        body.appendChild(lab);
+        body.appendChild(document.createElement("div")).className="hr";
+
+        if(loc.nonPresente){
+          var note = document.createElement("div");
+          note.className="note";
+          note.textContent="Il balcone è marcato come non presente.";
+          body.appendChild(note);
+          d.appendChild(body);
+          el.localiWrap.appendChild(d);
+          return;
+        }
+      }
+
+      if(loc.tipo === "corridoio"){
+        var lab2 = document.createElement("label");
+        lab2.style.display="flex"; lab2.style.gap="10px"; lab2.style.alignItems="center";
+        var c2 = document.createElement("input"); c2.type="checkbox"; c2.checked = !!loc.nonPresente;
+        c2.addEventListener("change", function(){ loc.nonPresente = c2.checked; saveLiteDebounced(); renderLocali(); });
+        lab2.appendChild(c2);
+        lab2.appendChild(document.createTextNode("Corridoio non presente"));
+        body.appendChild(lab2);
+        body.appendChild(document.createElement("div")).className="hr";
+
+        if(loc.nonPresente){
+          var note2 = document.createElement("div");
+          note2.className="note";
+          note2.textContent="Il corridoio è marcato come non presente.";
+          body.appendChild(note2);
+          d.appendChild(body);
+          el.localiWrap.appendChild(d);
+          return;
+        }
+      }
+
+      if(loc.tipo === "stanza" || loc.tipo === "stanza_soggiorno"){
+        var l = document.createElement("label"); l.textContent="Descrizione stanza (facoltativa)";
+        var inp = document.createElement("input"); inp.type="text"; inp.value = loc.descr||"";
+        inp.addEventListener("input", function(){ loc.descr = inp.value; saveLiteDebounced(); });
+        body.appendChild(l); body.appendChild(inp);
+        body.appendChild(document.createElement("div")).className="hr";
+      }
+
+
+      // Locale speciale: Porta entrata (STEP 2 dedicato)
+      if(loc.tipo === "porta_entrata"){
+        ensurePortaEntrataLocale(loc);
+        var pe = loc.portaEntrata;
+
+        // Apri di default se contiene dati
+        try{ d.open = portaEntrataHasData(pe); }catch(e){}
+
+        function setStdState(obj, v){
+          obj.state = v;
+          saveLiteDebounced();
+        }
+
+        function renderStdBlock(title, obj){
+          var box = document.createElement("div");
+          box.className = "elem";
+
+          var head = document.createElement("div");
+          head.className = "elem-title";
+          head.innerHTML = "<span>"+escapeHtml(title)+"</span>";
+          box.appendChild(head);
+
+          var opts = document.createElement("div");
+          opts.className = "opt-row";
+          var group = "pe_"+loc.id+"_"+title.replace(/\W+/g,"_");
+          opts.appendChild(radio(group, "nuovo", obj.state==="nuovo", function(v){ setStdState(obj, v); }));
+          opts.appendChild(radio(group, "normale usura", obj.state==="normale usura", function(v){ setStdState(obj, v); }));
+          box.appendChild(opts);
+
+          var defWrap = document.createElement("div");
+          defWrap.className = "defects-wrap";
+          renderDefectsControls(obj.defects, defWrap);
+          box.appendChild(defWrap);
+
+          body.appendChild(box);
+        }
+
+        // PORTA (porta + telaio)
+        var portaBox = document.createElement("div");
+        portaBox.className = "elem";
+
+        var portaHead = document.createElement("div");
+        portaHead.className = "elem-title";
+        portaHead.innerHTML = "<span>PORTA</span>";
+        portaBox.appendChild(portaHead);
+
+        // Porta
+        var st1 = document.createElement("div");
+        st1.className = "elem-subtitle";
+        st1.textContent = "Porta";
+        portaBox.appendChild(st1);
+
+        var opts1 = document.createElement("div");
+        opts1.className = "opt-row";
+        var g1 = "pe_"+loc.id+"_porta";
+        opts1.appendChild(radio(g1, "nuovo", pe.porta.state==="nuovo", function(v){ pe.porta.state=v; saveLiteDebounced(); }));
+        opts1.appendChild(radio(g1, "normale usura", pe.porta.state==="normale usura", function(v){ pe.porta.state=v; saveLiteDebounced(); }));
+        portaBox.appendChild(opts1);
+
+        var def1 = document.createElement("div");
+        def1.className = "defects-wrap";
+        renderDefectsControls(pe.porta.defects, def1);
+        portaBox.appendChild(def1);
+
+        portaBox.appendChild(document.createElement("div")).className="hr";
+
+        // Telaio
+        var st2 = document.createElement("div");
+        st2.className = "elem-subtitle";
+        st2.textContent = "Telaio porta";
+        portaBox.appendChild(st2);
+
+        var opts2 = document.createElement("div");
+        opts2.className = "opt-row";
+        var g2 = "pe_"+loc.id+"_telaio";
+        opts2.appendChild(radio(g2, "nuovo", pe.telaio.state==="nuovo", function(v){ pe.telaio.state=v; saveLiteDebounced(); }));
+        opts2.appendChild(radio(g2, "normale usura", pe.telaio.state==="normale usura", function(v){ pe.telaio.state=v; saveLiteDebounced(); }));
+        portaBox.appendChild(opts2);
+
+        var def2 = document.createElement("div");
+        def2.className = "defects-wrap";
+        renderDefectsControls(pe.telaio.defects, def2);
+        portaBox.appendChild(def2);
+
+        body.appendChild(portaBox);
+
+        // Serratura (sempre presente)
+        renderStdBlock("Serratura", pe.serratura);
+
+        // Campanello / Citofono (può essere non presente)
+        var citBox = document.createElement("div");
+        citBox.className = "elem";
+        var citHead = document.createElement("div");
+        citHead.className = "elem-title";
+        citHead.innerHTML = "<span>Campanello / Citofono</span>";
+        citBox.appendChild(citHead);
+
+        var citOpts = document.createElement("div");
+        citOpts.className = "opt-row";
+        var gC = "pe_"+loc.id+"_citofono";
+        citOpts.appendChild(radio(gC, "nuovo", pe.citofono.mode==="nuovo", function(v){
+          pe.citofono.mode=v;
+          saveLiteDebounced();
+          renderLocali();
+        }));
+        citOpts.appendChild(radio(gC, "normale usura", pe.citofono.mode==="normale usura", function(v){
+          pe.citofono.mode=v;
+          saveLiteDebounced();
+          renderLocali();
+        }));
+        citOpts.appendChild(radio(gC, "non presente", pe.citofono.mode==="non presente", function(v){
+          pe.citofono.mode=v;
+          // Coerenza: se non presente, azzera difetti/descr/foto
+          pe.citofono.defects.on = false;
+          pe.citofono.defects.desc = "";
+          pe.citofono.defects.photos = [];
+          saveLiteDebounced();
+          renderLocali();
+        }));
+        citBox.appendChild(citOpts);
+
+        if(pe.citofono.mode !== "non presente"){
+          var citDef = document.createElement("div");
+          citDef.className = "defects-wrap";
+          renderDefectsControls(pe.citofono.defects, citDef);
+          citBox.appendChild(citDef);
+        }else{
+          var noteNP = document.createElement("div");
+          noteNP.className = "note";
+          noteNP.textContent = "Campanello / Citofono marcato come non presente.";
+          citBox.appendChild(noteNP);
+        }
+
+        body.appendChild(citBox);
+
+        // Chiavi
+        var kBox = document.createElement("div");
+        kBox.className = "elem";
+        var kHead = document.createElement("div");
+        kHead.className = "elem-title";
+        kHead.innerHTML = "<span>Chiavi</span>";
+        kBox.appendChild(kHead);
+
+        var kNote = document.createElement("div");
+        kNote.className = "note";
+        kNote.innerHTML = 'Regola: <strong>Chiave standard</strong> ed <strong>Chiave registrata</strong> sono mutualmente esclusive. Le altre possono coesistere.';
+        kBox.appendChild(kNote);
+
+        function keyRow(label, keyName, numName){
+          var row = document.createElement("div");
+          row.style.display="grid";
+          row.style.gridTemplateColumns="1fr 140px";
+          row.style.gap="10px";
+          row.style.alignItems="center";
+          row.style.marginTop="10px";
+
+          var lab = document.createElement("label");
+          lab.style.display="flex";
+          lab.style.gap="10px";
+          lab.style.alignItems="center";
+          lab.style.margin="0";
+          var c = document.createElement("input");
+          c.type="checkbox";
+          c.checked = !!pe.chiavi[keyName];
+
+          c.addEventListener("change", function(){
+            pe.chiavi[keyName] = c.checked;
+
+            // esclusività standard vs registrata
+            if(keyName==="standard" && c.checked){
+              pe.chiavi.registrata = false;
+              pe.chiavi.registrata_n = "";
+            }
+            if(keyName==="registrata" && c.checked){
+              pe.chiavi.standard = false;
+              pe.chiavi.standard_n = "";
+            }
+
+            saveLiteDebounced();
+            renderLocali();
+          });
+
+          lab.appendChild(c);
+          lab.appendChild(document.createTextNode(" "+label));
+
+          var n = document.createElement("input");
+          n.type="number";
+          n.min="0";
+          n.inputMode="numeric";
+          n.placeholder="Nro.";
+          n.value = pe.chiavi[numName] || "";
+          n.addEventListener("input", function(){
+            pe.chiavi[numName] = n.value;
+            saveLiteDebounced();
+          });
+
+          row.appendChild(lab);
+          row.appendChild(n);
+          return row;
+        }
+
+        kBox.appendChild(keyRow("Chiave standard", "standard", "standard_n"));
+        kBox.appendChild(keyRow("Chiave di sicurezza aggiuntiva", "sicurezza", "sicurezza_n"));
+        kBox.appendChild(keyRow("Chiave combinata app. e portone", "combinata", "combinata_n"));
+        kBox.appendChild(keyRow("Chiave registrata", "registrata", "registrata_n"));
+
+        var kLab = document.createElement("label");
+        kLab.style.marginTop="12px";
+        kLab.textContent = "Note particolari";
+        var kTa = document.createElement("textarea");
+        kTa.value = pe.chiavi.note || "";
+        kTa.addEventListener("input", function(){ pe.chiavi.note = kTa.value; saveLiteDebounced(); });
+        kBox.appendChild(kLab);
+        kBox.appendChild(kTa);
+
+        body.appendChild(kBox);
+
+        d.appendChild(body);
+        el.localiWrap.appendChild(d);
+        return;
+      }
+
+
+      // Render elementi
+      (loc.items||[]).forEach(function(it){
+        if(loc.tipo==="bagno"){
+          // accessori vasca e box doccia: visibili solo se vasca presente
+          if(it.type==="vasca_accessori" || it.type==="box_doccia"){
+            var vasca = (loc.items||[]).find(x => x.type==="vasca_presence");
+            if(!vasca || !vasca.present) return;
+          }
+        }
+
+        if(it.type==="porta_locale_np") return renderPortaLocaleNP(it, body);
+        if(it.type==="porta_blocco") return renderPortaBlocco(it, body);
+        if(it.type==="floor") return renderFloor(it, body);
+        if(it.type==="walls") return renderWalls(it, body);
+        if(it.type==="internal_door") return renderInternalDoor(it, body);
+        if(it.type==="internal_key") return renderInternalKey(it, body);
+        if(it.type==="vasca_presence") return renderVascaPresence(it, body);
+        if(it.type==="balcone_stato") return renderBalconeStato(it, body);
+
+        // standard con non presente gestita solo per cucina/bagno
+        if(it.type==="standard"){
+          var allowNonPres = (loc.tipo==="cucina" || loc.tipo==="bagno") && (it.label!=="Porta cucina" ? true : true);
+          return renderStandard(it, body, allowNonPres);
+        }
+
+        // fallback: standard semplice
+        if(it.defects) return renderSimpleStdNoNonPresente(it, body);
+      });
+
+      if(loc.tipo==="custom"){
+        body.appendChild(document.createElement("div")).className="hr";
+        var del = document.createElement("button");
+        del.className="btn mini danger";
+        del.textContent="Elimina locale";
+        del.addEventListener("click", function(){
+          state.locali.splice(idx,1);
+          saveLiteDebounced();
+          renderLocali();
+        });
+        body.appendChild(del);
+      }
+
+      d.appendChild(body);
+      el.localiWrap.appendChild(d);
+    });
+  }
+
+
+  function validateStatus(){
+    var issues = [];
+    function missingNames(list){
+      return (list||[]).some(x => !x.nome || !x.nome.trim());
+    }
+    if(state.tipo.riconsegna && missingNames(state.inquiliniUsc)) issues.push("Nomi uscenti");
+    if(state.tipo.consegna && missingNames(state.inquiliniEnt)) issues.push("Nomi entranti");
+    el.statusText.textContent = issues.length ? ("Da completare: "+issues.join(", ")) : "OK";
+  }
+
+  function refreshPrint(){
+    var tipoTxt = state.tipo.consegna && state.tipo.riconsegna ? "alla consegna e alla riconsegna" : (state.tipo.consegna ? "alla consegna" : "alla riconsegna");
+
+    document.getElementById("printHeader").innerHTML =
+      '<div class="print-h">Verbale di constatazione dello stato dell’ente locato</div>' +
+      '<div class="print-kv"><div><strong>'+escapeHtml(tipoTxt)+'</strong></div>' +
+      '<div>Redatto il <strong>'+escapeHtml(state.data)+'</strong> alle ore <strong>'+escapeHtml(state.ora)+'</strong></div></div>';
+
+    document.getElementById("printParti").innerHTML =
+      '<div class="print-h">Locatore</div><div class="print-kv"><div>'+nl2br(escapeHtml(state.locatore))+'</div></div>' +
+      '<div style="height:8px"></div>' +
+      '<div class="print-h">Rappresentato da</div><div class="print-kv"><div>'+firstLineBoldNl2br(state.rappresentato)+'</div></div>';
+
+    document.getElementById("printUsc").innerHTML = state.tipo.riconsegna
+      ? '<div class="print-h">Inquilino/i uscente/i</div><div class="print-kv">'+(state.inquiliniUsc.length?state.inquiliniUsc.map(q=>'<div><strong>'+escapeHtml(q.nome||"")+'</strong></div>').join(""):'<div class="note">—</div>')+'</div>'
+      : "";
+
+    document.getElementById("printEnt").innerHTML = state.tipo.consegna
+      ? '<div class="print-h">Inquilino/i entrante/i</div><div class="print-kv">'+(state.inquiliniEnt.length?state.inquiliniEnt.map(q=>'<div><strong>'+escapeHtml(q.nome||"")+'</strong></div>').join(""):'<div class="note">—</div>')+'</div>'
+      : "";
+
+    document.getElementById("printStabile").innerHTML =
+      '<div class="print-h">Ente locato</div><div class="print-kv"><div><strong>'+escapeHtml((state.stabile.name||"").toUpperCase())+'</strong></div><div>'+escapeHtml(state.stabile.addr||"")+'</div></div>';
+
+    var tip = state.unita.tipologia==="Altro" ? (state.unita.tipAlt||"Altro") : state.unita.tipologia;
+    var piano = state.unita.piano==="Altro" ? (state.unita.pianoAlt||"Altro") : state.unita.piano;
+    document.getElementById("printUnita").innerHTML =
+      '<div class="print-h">Unità</div><div class="print-kv"><div><strong>Tipologia:</strong> '+escapeHtml(tip)+' &nbsp;&nbsp; <strong>Piano:</strong> '+escapeHtml(piano)+'</div>' +
+      (state.unita.descr ? '<div><strong>Descrizione:</strong> '+escapeHtml(state.unita.descr)+'</div>' : '') +
+      '</div>';
+
+    // Persone presenti (stampa strutturata: locatore + inquilini entranti/uscenti + eventuali altri presenti)
+    var presLoc = (state.personePresenti||[]).find(p => (p.ruolo||"").toLowerCase()==="locatore");
+    var locName = presLoc && (presLoc.nome||"").trim() ? presLoc.nome.trim() : "Daniele Biasca-Caroni";
+
+    function namesFrom(list){
+      return (list||[]).map(x => (x.nome||"").trim()).filter(Boolean);
+    }
+    var entNames = state.tipo.consegna ? namesFrom(state.inquiliniEnt) : [];
+    var uscNames = state.tipo.riconsegna ? namesFrom(state.inquiliniUsc) : [];
+
+    var customPres = (state.personePresenti||[]).filter(p => !p.auto && (p.nome||"").trim());
+
+    function lineOrBlank(label, names){
+      if(!names || !names.length){
+        return '<div><strong>'+escapeHtml(label)+':</strong> _____________________________</div>';
+      }
+      return '<div><strong>'+escapeHtml(label)+':</strong> '+escapeHtml(names.join(", "))+'</div>';
+    }
+
+    var presHtml = '';
+    presHtml += '<div><strong>Locatore:</strong> '+escapeHtml(locName)+'</div>';
+    if(state.tipo.consegna) presHtml += lineOrBlank('Inquilino/i entrante/i', entNames);
+    if(state.tipo.riconsegna) presHtml += lineOrBlank('Inquilino/i uscente/i', uscNames);
+
+    if(customPres.length){
+      presHtml += '<div style="height:6px"></div>';
+      presHtml += '<div><strong>Altre persone presenti:</strong></div>';
+      presHtml += customPres.map(p => '<div>'+escapeHtml((p.nome||"").trim())+(p.ruolo && p.ruolo.trim() ? ' — '+escapeHtml(p.ruolo.trim()) : '')+'</div>').join('');
+    }
+
+    document.getElementById("printPres").innerHTML =
+      '<div class="print-h">Persone presenti</div><div class="print-kv">'+presHtml+'</div>';
+
+    document.getElementById("printOss").innerHTML = state.osservazioni
+      ? '<div class="print-h">Osservazioni particolari</div><div class="print-kv"><div>'+nl2br(escapeHtml(state.osservazioni))+'</div></div>'
+      : "";
+
+    
+    function printOneStd(label, stateTxt, defects){
+      var s = stateTxt ? stateTxt : "";
+      var line = '<div><strong>'+escapeHtml(label)+':</strong> '+escapeHtml(s||"")+'</div>';
+      if(defects && defects.on){
+        var d = (defects.desc||"").trim();
+        line += '<div style="margin-left:14px"><em>Difetti:</em> '+escapeHtml(d || "Difetti riscontrati")+'</div>';
+      }
+      return line;
+    }
+
+    function printElement(it){
+      if(!it) return "";
+      if(it.type==="porta_locale_np"){
+        if(it.nonPresente){
+          return '<div><strong>PORTA</strong>: non presente</div>';
+        }
+        var hh = '<div><strong>PORTA</strong></div>';
+        hh += '<div style="margin-left:14px"><strong>Porta:</strong> '+escapeHtml(it.door.state||"")+'</div>';
+        if(it.door.defects && it.door.defects.on){
+          hh += '<div style="margin-left:28px"><em>Difetti:</em> '+escapeHtml((it.door.defects.desc||"").trim() || "Difetti riscontrati")+'</div>';
+        }
+        hh += '<div style="margin-left:14px"><strong>Telaio porta:</strong> '+escapeHtml(it.frame.state||"")+'</div>';
+        if(it.frame.defects && it.frame.defects.on){
+          hh += '<div style="margin-left:28px"><em>Difetti:</em> '+escapeHtml((it.frame.defects.desc||"").trim() || "Difetti riscontrati")+'</div>';
+        }
+        return hh;
+      }
+      if(it.type==="porta_blocco"){
+        var h = '<div><strong>PORTA</strong></div>';
+        h += '<div style="margin-left:14px"><strong>Porta:</strong> '+escapeHtml(it.door.state||"")+'</div>';
+        if(it.door.defects && it.door.defects.on){
+          h += '<div style="margin-left:28px"><em>Difetti:</em> '+escapeHtml((it.door.defects.desc||"").trim() || "Difetti riscontrati")+'</div>';
+        }
+        h += '<div style="margin-left:14px"><strong>Telaio porta:</strong> '+escapeHtml(it.frame.state||"")+'</div>';
+        if(it.frame.defects && it.frame.defects.on){
+          h += '<div style="margin-left:28px"><em>Difetti:</em> '+escapeHtml((it.frame.defects.desc||"").trim() || "Difetti riscontrati")+'</div>';
+        }
+        return h;
+      }
+      if(it.type==="floor"){
+        var ft = it.floorType==="altro" ? (it.floorOther||"altro") : (it.floorType||"");
+        var st = (it.state||"") + (ft ? " ("+ft+")" : "");
+        return printOneStd("Pavimenti", st.trim(), it.defects);
+      }
+      if(it.type==="walls"){
+        return printOneStd(it.label||"", it.state||"", it.defects);
+      }
+      if(it.type==="internal_door"){
+        var h2 = '<div><strong>Porte interne</strong></div>';
+        h2 += '<div style="margin-left:14px"><strong>Porta:</strong> '+escapeHtml(it.door.state||"")+'</div>';
+        if(it.door.defects && it.door.defects.on){
+          h2 += '<div style="margin-left:28px"><em>Difetti:</em> '+escapeHtml((it.door.defects.desc||"").trim() || "Difetti riscontrati")+'</div>';
+        }
+        h2 += '<div style="margin-left:14px"><strong>Telaio porta:</strong> '+escapeHtml(it.frame.state||"")+'</div>';
+        if(it.frame.defects && it.frame.defects.on){
+          h2 += '<div style="margin-left:28px"><em>Difetti:</em> '+escapeHtml((it.frame.defects.desc||"").trim() || "Difetti riscontrati")+'</div>';
+        }
+        return h2;
+      }
+      if(it.type==="internal_key"){
+        var label = "Chiave porte interne";
+        var val = (it.key==="manca") ? "manca chiave" : (it.key==="presente" ? "chiave presente" : "________");
+        return printOneStd(label, val, it.defects);
+      }
+      if(it.type==="vasca_presence"){
+        return '<div><strong>Vasca da bagno:</strong> '+escapeHtml(it.present ? "presente" : "non presente")+'</div>';
+      }
+      if(it.type==="vasca_accessori" || it.type==="box_doccia"){
+        return printOneStd(it.label||"", it.state||"", it.defects);
+      }
+      if(it.type==="balcone_stato"){
+        return printOneStd("Stato generale", it.state||"", it.defects);
+      }
+      if(it.type==="standard"){
+        if(it.nonPresente){
+          return '<div><strong>'+escapeHtml(it.label||"")+'</strong>: Non presente</div>';
+        }
+        return printOneStd(it.label||"", it.state||"", it.defects);
+      }
+      return "";
+    }
+
+    var out = '<div class="print-h">Locali</div>';
+    ensureLocaliItems();
+    state.locali.forEach(function(loc){
+      if((loc.tipo==="balcone" || loc.tipo==="corridoio") && loc.nonPresente) return;
+      out += '<div class="print-loc-title">'+escapeHtml(loc.titolo)+'</div>';
+      if((loc.tipo==="stanza"||loc.tipo==="stanza_soggiorno") && loc.descr){
+        out += '<div class="print-kv"><div><strong>Descrizione:</strong> '+escapeHtml(loc.descr)+'</div></div>';
+      }
+      
+      // Porta entrata: stampa blocco speciale (foto escluse)
+      if(loc.tipo==="porta_entrata"){
+        ensurePortaEntrataLocale(loc);
+        out += '<div class="print-kv">'+printPortaEntrata(loc.portaEntrata)+'</div>';
+        return;
+      }
+
+      out += '<div class="print-kv">';
+      if(loc.tipo==="balcone"){
+        // balcone: no porta obbligatoria
+        (loc.items||[]).forEach(function(it){
+          out += printElement(it);
+        });
+      }else{
+        (loc.items||[]).forEach(function(it){
+          // bagno: accessori vasca / box doccia solo se vasca presente
+          if(loc.tipo==="bagno" && (it.type==="vasca_accessori" || it.type==="box_doccia")){
+            var vasca = (loc.items||[]).find(x => x.type==="vasca_presence");
+            if(!vasca || !vasca.present) return;
+          }
+          out += printElement(it);
+        });
+      }
+      out += '</div>';
+    });
+    document.getElementById("printLocali").innerHTML = out;
+
+  }
+
+  function persistAndRefresh(){
+    state.tipo.consegna = el.chkConsegna.checked;
+    state.tipo.riconsegna = el.chkRiconsegna.checked;
+    state.data = el.fldData.value;
+    state.ora = el.fldOra.value;
+    state.locatore = el.fldLocatore.value;
+    state.rappresentato = el.fldRappresentato.value;
+
+    state.stabile.name = el.selStabile.value;
+    state.stabile.addr = el.fldStabileAddr.value;
+
+    state.unita.tipologia = el.selTipologia.value;
+    state.unita.tipAlt = el.fldTipAlt.value;
+    state.unita.piano = el.selPiano.value;
+    state.unita.pianoAlt = el.fldPianoAlt.value;
+    state.unita.descr = el.fldDescSup.value;
+
+    state.osservazioni = el.fldOsservazioni.value;
+
+    syncPersonePresenti();
+    saveState();
+
+    renderInquilini();
+    renderTipologiaExtras();
+    el.listPres.innerHTML="";
+    state.personePresenti.forEach(function(p, idx){
+      el.listPres.appendChild(personRow(p, persistAndRefresh, function(){ state.personePresenti.splice(idx,1); persistAndRefresh(); }));
+    });
+    renderLocali();
+    validateStatus();
+    refreshPrint();
+  }
+
+  function init(){
+    el.fldData.value = formatDateIT(new Date());
+    el.fldOra.value = nowTimeHHMM();
+
+    state = loadState() || defaultState();
+
+    renderStabili();
+    el.chkConsegna.checked = !!state.tipo.consegna;
+    el.chkRiconsegna.checked = !!state.tipo.riconsegna;
+    if(!el.chkConsegna.checked && !el.chkRiconsegna.checked){ el.chkConsegna.checked = true; state.tipo.consegna = true; }
+
+    el.fldData.value = state.data || el.fldData.value;
+    el.fldOra.value = state.ora || el.fldOra.value;
+    el.fldLocatore.value = state.locatore || el.fldLocatore.value;
+    state.rappresentato = normalizeRappresentato(state.rappresentato || el.fldRappresentato.value);
+    el.fldRappresentato.value = state.rappresentato || el.fldRappresentato.value;
+
+    el.selStabile.value = state.stabile.name || "ISOSTAR";
+    var found = allStabili().find(x => x.name===el.selStabile.value);
+    el.fldStabileAddr.value = state.stabile.addr || (found ? found.addr : "");
+
+    el.selTipologia.value = state.unita.tipologia || "2.5 locali";
+    el.selPiano.value = state.unita.piano || "PT";
+    el.fldTipAlt.value = state.unita.tipAlt || "";
+    el.fldPianoAlt.value = state.unita.pianoAlt || "";
+    el.fldDescSup.value = state.unita.descr || "";
+    el.fldOsservazioni.value = state.osservazioni || "";
+
+    if(!state.locali || !state.locali.length) state.locali = buildDefaultLocali(el.selTipologia.value);
+    ensureLocaliItems();
+
+    el.chkConsegna.addEventListener("change", function(){ ensureTipoValid(); persistAndRefresh(); });
+    el.chkRiconsegna.addEventListener("change", function(){ ensureTipoValid(); persistAndRefresh(); });
+
+    ["input","change"].forEach(function(evt){
+      el.fldData.addEventListener(evt, persistAndRefresh);
+      el.fldOra.addEventListener(evt, persistAndRefresh);
+      el.fldLocatore.addEventListener(evt, persistAndRefresh);
+      el.fldRappresentato.addEventListener(evt, persistAndRefresh);
+      el.fldStabileAddr.addEventListener(evt, persistAndRefresh);
+      el.fldTipAlt.addEventListener(evt, persistAndRefresh);
+      el.fldPianoAlt.addEventListener(evt, persistAndRefresh);
+      el.fldDescSup.addEventListener(evt, persistAndRefresh);
+      el.fldOsservazioni.addEventListener(evt, persistAndRefresh);
+    });
+
+    el.selStabile.addEventListener("change", function(){
+      var opt = allStabili().find(x => x.name===el.selStabile.value);
+      state.stabile.name = el.selStabile.value;
+      state.stabile.addr = opt ? opt.addr : "";
+      el.fldStabileAddr.value = state.stabile.addr;
+      persistAndRefresh();
+    });
+
+    el.selTipologia.addEventListener("change", function(){
+      state.unita.tipologia = el.selTipologia.value;
+      rebuildLocaliForTipologia();
+      persistAndRefresh();
+    });
+
+    el.selPiano.addEventListener("change", function(){ persistAndRefresh(); });
+
+    el.btnAddUsc.addEventListener("click", function(){
+      state.inquiliniUsc.push({id:uid(), nome:"", tel:"", email:"", nuovoInd:""});
+      persistAndRefresh();
+    });
+    el.btnAddEnt.addEventListener("click", function(){
+      state.inquiliniEnt.push({id:uid(), nome:"", tel:"", email:""});
+      persistAndRefresh();
+    });
+
+    el.btnAddPres.addEventListener("click", function(){
+      state.personePresenti.push({id:uid(), nome:"", ruolo:"", auto:false});
+      persistAndRefresh();
+    });
+
+    el.btnAddBagno.addEventListener("click", function(){
+      var lastIdx=-1, count=0;
+      state.locali.forEach(function(l, i){ if(l.tipo==="bagno"){ lastIdx=i; count++; } });
+      var bagno = {id:uid(), tipo:"bagno", titolo:"Bagno "+(count+1)};
+      state.locali.splice(lastIdx+1, 0, bagno);
+      var n=0;
+      state.locali.forEach(function(l){ if(l.tipo==="bagno"){ n++; l.titolo="Bagno "+n; } });
+      persistAndRefresh();
+    });
+
+    el.btnAddLocale.addEventListener("click", function(){
+      var nome = prompt("Nome del locale (es. Cantina, Ripostiglio, Lavanderia, ecc.)");
+      if(!nome) return;
+      state.locali.push({id:uid(), tipo:"custom", titolo:(""+nome).trim()});
+      persistAndRefresh();
+    });
+
+    el.btnAddStabile.addEventListener("click", function(){
+      var nome = prompt("Nome stabile (es. NUOVO STABILE)");
+      if(!nome) return;
+      var addr = prompt("Indirizzo completo");
+      if(addr == null) addr = "";
+      nome = (""+nome).trim().toUpperCase();
+      addr = (""+addr).trim();
+      if(!nome) return;
+      var custom = loadCustomStabili();
+      custom.push({name:nome, addr:addr});
+      var map = {};
+      custom.forEach(x => map[x.name]=x);
+      saveCustomStabili(Object.values(map));
+      renderStabili();
+      el.selStabile.value = nome;
+      el.fldStabileAddr.value = addr;
+      state.stabile.name = nome;
+      state.stabile.addr = addr;
+      persistAndRefresh();
+    });
+
+    el.btnPrint.addEventListener("click", function(){ persistAndRefresh(); window.print(); });
+
+    el.btnExport.addEventListener("click", function(){
+      persistAndRefresh();
+      var blob = new Blob([JSON.stringify(state, null, 2)], {type:"application/json"});
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "verbale.json";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 250);
+    });
+
+    el.btnImport.addEventListener("click", function(){ el.fileImport.click(); });
+    el.fileImport.addEventListener("change", function(){
+      var f = el.fileImport.files && el.fileImport.files[0];
+      if(!f) return;
+      var r = new FileReader();
+      r.onload = function(){
+        try{
+          var obj = JSON.parse(r.result);
+          if(!obj || typeof obj !== "object") throw new Error("invalid");
+          state = obj;
+          saveState();
+          location.reload();
+        }catch(e){ alert("JSON non valido."); }
+      };
+      r.readAsText(f);
+      el.fileImport.value = "";
+    });
+
+    el.btnReset.addEventListener("click", function(){
+      if(!confirm("Reset completo? Cancella i dati salvati per questo verbale.")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    });
+
+    persistAndRefresh();
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
