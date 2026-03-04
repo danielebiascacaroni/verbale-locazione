@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Verbale di constatazione</title>
+  <!-- CHANGELOG: Titolo su una riga; titoli sezioni uniformati; 'Rappresentato da' multilinea; PDF 'Rappresentato da' con prima riga in grassetto; PDF 'Persone presenti' con righe automatiche entrante/uscente in base alle spunte. -->
+  <style>
+    :root{
+      --bg:#f5f6f8;
+      --card:#ffffff;
+      --text:#111827;
+      --muted:#4b5563;
+      --border:#d1d5db;
+      --accent:#2563eb;
+      --accent2:#1d4ed8;
+      --danger:#b91c1c;
+      --shadow: 0 10px 20px rgba(0,0,0,.06);
+      --radius:16px;
+      --gap:14px;
+      --font: 18px;
+      --inputH: 44px;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      font-size:var(--font);
+      line-height:1.35;
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:18px 14px 60px;}
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(245,246,248,.92);
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid var(--border);
+      padding:12px 10px;
+      margin:0 -14px 16px;
+    }
+    .topbar-inner{max-width:980px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:0 14px;}
+    .btn{
+      height:44px;
+      padding:0 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--card);
+      color:var(--text);
+      font-weight:650;
+      cursor:pointer;
+    }
+    .btn.primary{background:var(--accent);border-color:var(--accent);color:white;}
+    .btn.primary:hover{background:var(--accent2);border-color:var(--accent2);}
+    .btn:active{transform:translateY(1px);}
+    .badge{
+      margin-left:auto;
+      border:1px solid var(--border);
+      background:var(--card);
+      border-radius:999px;
+      padding:10px 12px;
+      display:flex;gap:10px;align-items:center;
+      box-shadow:var(--shadow);
+      font-weight:650;
+    }
+    .badge small{font-weight:600;color:var(--muted);}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:var(--shadow);
+      margin-bottom:14px;
+    }
+    h1{margin:0;font-size:26px;letter-spacing:.2px;white-space:nowrap;}
+    @media (max-width:520px){ h1{font-size:22px;} }
+    .section-title{font-weight:900;font-size:20px;margin:0 0 6px;}
+    label.section-title{font-weight:900;font-size:20px;margin:2px 0 6px;}
+
+    .note{font-size:16px;color:var(--muted);}
+    .grid{display:grid;gap:var(--gap);}
+    @media (min-width:820px){ .grid.cols2{grid-template-columns:1fr 1fr;} }
+    label{display:block;font-weight:700;margin:2px 0 6px;}
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select, input[type="time"]{
+      width:100%;
+      height:var(--inputH);
+      border-radius:12px;
+      border:1px solid var(--border);
+      padding:10px 12px;
+      font-size:18px;
+      background:white;
+    }
+    textarea{height:auto;min-height:92px;resize:vertical;}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;}
+    .row > .field{flex:1;min-width:240px;}
+    .row > .field.small{min-width:180px;max-width:260px;}
+    .checkrow{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:8px;}
+    .checkrow label{margin:0;font-weight:700;display:flex;gap:10px;align-items:center;}
+    input[type="checkbox"]{width:26px;height:26px;}
+    details{border:1px solid var(--border);border-radius:14px;background:#fff;box-shadow:var(--shadow);overflow:hidden;}
+    summary{cursor:pointer;list-style:none;padding:14px;font-weight:800;display:flex;justify-content:space-between;align-items:center;}
+    summary::-webkit-details-marker{display:none;}
+    .details-body{padding:14px;border-top:1px solid var(--border);}
+    .pill{font-size:14px;font-weight:800;border:1px solid var(--border);border-radius:999px;padding:6px 10px;color:var(--muted);}
+    .inline-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+    .mini{height:40px;border-radius:12px;padding:0 12px;font-size:16px;}
+    .danger{border-color:#fecaca;background:#fff1f2;color:#7f1d1d;}
+    .hr{height:1px;background:var(--border);margin:12px 0;}
+
+    @media print{
+      body{background:#fff;}
+      .topbar{display:none !important;}
+      .wrap{max-width:none;margin:0;padding:0;}
+      .card, details{box-shadow:none;border:0;border-radius:0;}
+      input, textarea, select, button{display:none !important;}
+      .print-only{display:block !important;}
+      .no-print{display:none !important;}
+    }
+    .print-only{display:none;}
+    .print-section{margin:0 0 14px;}
+    .print-h{font-weight:900;font-size:16px;margin:0 0 6px;}
+    .print-kv div{margin:2px 0;}
+    .print-loc-title{font-weight:900;margin:10px 0 6px;border-top:1px solid #e5e7eb;padding-top:8px;}
+  </style>
+</head>
+<body>
+  <div class="topbar no-print">
+    <div class="topbar-inner">
+      <button class="btn" id="btnExport">Esporta JSON</button>
+      <button class="btn" id="btnImport">Importa JSON</button>
+      <button class="btn primary" id="btnPrint">Stampa / Salva PDF</button>
+      <button class="btn danger" id="btnReset">Reset</button>
+      <div class="badge"><span>Stato</span> <small id="statusText">OK</small></div>
+      <input type="file" id="fileImport" accept="application/json" style="display:none" />
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>Verbale di constatazione dello stato dell’ente locato</h1>
+
+      <div class="checkrow">
+        <label><input type="checkbox" id="chkConsegna" checked> alla consegna</label>
+        <label><input type="checkbox" id="chkRiconsegna" checked> alla riconsegna</label>
+      </div>
+
+      <div class="row" style="margin-top:12px;">
+        <div class="field">
+          <label>Redatto il</label>
+          <input type="text" id="fldData" />
+        </div>
+        <div class="field small">
+          <label>alle ore</label>
+          <input type="time" id="fldOra" />
+        </div>
+      </div>
+
+      <div class="print-only print-section" id="printHeader"></div>
+    </div>
+
+    <div class="card">
+      <div class="grid cols2">
+        <div>
+          <label class="section-title">Locatore/i</label>
+          <textarea id="fldLocatore">Daniele Biasca-Caroni e Fosco Arizzoli
+Viale Monte Verità 3
+6612 Ascona</textarea>
+        </div>
+        <div>
+          <label class="section-title">Rappresentato da</label>
+          <textarea id="fldRappresentato" rows="3">DANIELE BIASCA-CARONI
+Viale Monte Verità 3
+6612 Ascona</textarea>
+        </div>
+      </div>
+      <div class="print-only print-section" id="printParti"></div>
+    </div>
+
+    <div class="card" id="cardInquiliniUsc">
+      <div class="row" style="justify-content:space-between;align-items:center;">
+        <div>
+          <div class="section-title">Inquilino/i uscente/i</div>
+          <div class="note">Visibile solo se “alla riconsegna” è selezionato.</div>
+        </div>
+        <button class="btn mini" id="btnAddUsc">➕ Aggiungi inquilino</button>
+      </div>
+      <div id="listUsc" style="margin-top:10px;"></div>
+      <div class="print-only print-section" id="printUsc"></div>
+    </div>
+
+    <div class="card" id="cardInquiliniEnt">
+      <div class="row" style="justify-content:space-between;align-items:center;">
+        <div>
+          <div class="section-title">Inquilino/i entrante/i</div>
+          <div class="note">Visibile solo se “alla consegna” è selezionato.</div>
+        </div>
+        <button class="btn mini" id="btnAddEnt">➕ Aggiungi inquilino</button>
+      </div>
+      <div id="listEnt" style="margin-top:10px;"></div>
+      <div class="print-only print-section" id="printEnt"></div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label class="section-title">Ente locato</label>
+          <select id="selStabile"></select>
+        </div>
+        <div class="field">
+          <label>Indirizzo stabile (modificabile)</label>
+          <input type="text" id="fldStabileAddr" />
+        </div>
+      </div>
+      <div class="inline-actions">
+        <button class="btn mini" id="btnAddStabile">➕ Aggiungi stabile</button>
+        <span class="pill">Salvataggio permanente (localStorage)</span>
+      </div>
+      <div class="print-only print-section" id="printStabile"></div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div class="field">
+          <label>Tipologia unità</label>
+          <select id="selTipologia">
+            <option value="Monolocale">Monolocale</option>
+            <option value="2.5 locali">2.5 locali</option>
+            <option value="3.5 locali">3.5 locali</option>
+            <option value="4.5 locali">4.5 locali</option>
+            <option value="Altro">Altro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Piano</label>
+          <select id="selPiano">
+            <option value="PT">PT</option>
+            <option value="1 Piano">1 Piano</option>
+            <option value="2 Piano">2 Piano</option>
+            <option value="3 Piano">3 Piano</option>
+            <option value="4 Piano">4 Piano</option>
+            <option value="5 Piano">5 Piano</option>
+            <option value="6 Piano">6 Piano</option>
+            <option value="Altro">Altro</option>
+          </select>
+        </div>
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <div class="field" id="wrapTipAlt" style="display:none;">
+          <label>Tipologia (Altro)</label>
+          <input type="text" id="fldTipAlt" />
+        </div>
+        <div class="field" id="wrapPianoAlt" style="display:none;">
+          <label>Piano (Altro)</label>
+          <input type="text" id="fldPianoAlt" />
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <label>Descrizione supplementare (facoltativa)</label>
+        <input type="text" id="fldDescSup" />
+      </div>
+      <div class="print-only print-section" id="printUnita"></div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:center;">
+        <div>
+          <div class="section-title">Persone presenti</div>
+          <div class="note">Locatore + inquilini autocompilati in base a consegna/riconsegna.</div>
+        </div>
+        <button class="btn mini" id="btnAddPres">➕ Aggiungi persona presente</button>
+      </div>
+      <div id="listPres" style="margin-top:10px;"></div>
+      <div class="print-only print-section" id="printPres"></div>
+    </div>
+
+    <div class="card">
+      <label>Osservazioni particolari</label>
+      <textarea id="fldOsservazioni"></textarea>
+      <div class="print-only print-section" id="printOss"></div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:center;">
+        <div>
+          <div class="section-title">Locali</div>
+          <div class="note">Step 1: struttura dinamica. Step 2: elementi dettagliati per ogni locale.</div>
+        </div>
+        <div class="inline-actions" style="margin-top:0;">
+          <button class="btn mini" id="btnAddBagno">➕ Aggiungi bagno</button>
+          <button class="btn mini" id="btnAddLocale">➕ Aggiungi locale</button>
+        </div>
+      </div>
+      <div id="localiWrap" style="margin-top:12px;"></div>
+      <div class="print-only print-section" id="printLocali"></div>
+    </div>
+
+    <div class="card print-only" id="printFirme">
+      <div class="print-h">Firme</div>
+      <div class="print-kv">
+        <div>Locatore / rappresentante: _____________________________</div>
+        <div>Inquilino uscente: _____________________________</div>
+        <div>Inquilino entrante: _____________________________</div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  var STORAGE_KEY = "verbale_app_step1_v1";
+  var STABILI_KEY = "verbale_app_stabili_custom_v1";
+
+  function pad2(n){ return (n<10? "0"+n : ""+n); }
+  function formatDateIT(d){
+    var giorni = ["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"];
+    return giorni[d.getDay()] + " " + pad2(d.getDate()) + "." + pad2(d.getMonth()+1) + "." + d.getFullYear();
+  }
+  function nowTimeHHMM(){
+    var d = new Date();
+    return pad2(d.getHours()) + ":" + pad2(d.getMinutes());
+  }
+  function uid(){ return "id_" + Math.random().toString(16).slice(2) + "_" + Date.now(); }
+
+  var baseStabili = [
+    {name:"BALZAGO", addr:"Via Balzago 6, 6616 Losone"},
+    {name:"BEL ORIZZONTE", addr:"Strada Collina 25, 6612 Ascona"},
+    {name:"EBE ED EMILIO", addr:"Via ai Saleggi 5/7, 6600 Locarno"},
+    {name:"EDELWEISS", addr:"Via Sciaroni 1, 6600 Muralto"},
+    {name:"FAVORITA", addr:"Via San Gottardo 10, 6600 Muralto"},
+    {name:"IDEAL", addr:"Viale 1814 Nro. 7, 6512 Giubiasco"},
+    {name:"ISOSTAR", addr:"Via Ballerini 7, 6600 Locarno"},
+    {name:"RISORGIMENTO", addr:"Via Vorame 122, 6612 Ascona"},
+    {name:"VIA NESSI", addr:"Via Nessi 34a, 6600 Locarno"}
+  ];
+
+  function loadCustomStabili(){
+    try{
+      var raw = localStorage.getItem(STABILI_KEY);
+      var arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr.filter(x => x && x.name && x.addr) : [];
+    }catch(e){ return []; }
+  }
+  function saveCustomStabili(arr){ localStorage.setItem(STABILI_KEY, JSON.stringify(arr)); }
+  function allStabili(){
+    var merged = baseStabili.concat(loadCustomStabili());
+    merged.sort((a,b)=>(a.name||"").localeCompare(b.name||"", "it"));
+    return merged;
+  }
+
+  var el = {
+    chkConsegna: document.getElementById("chkConsegna"),
+    chkRiconsegna: document.getElementById("chkRiconsegna"),
+    fldData: document.getElementById("fldData"),
+    fldOra: document.getElementById("fldOra"),
+    fldLocatore: document.getElementById("fldLocatore"),
+    fldRappresentato: document.getElementById("fldRappresentato"),
+    cardUsc: document.getElementById("cardInquiliniUsc"),
+    cardEnt: document.getElementById("cardInquiliniEnt"),
+    listUsc: document.getElementById("listUsc"),
+    listEnt: document.getElementById("listEnt"),
+    btnAddUsc: document.getElementById("btnAddUsc"),
+    btnAddEnt: document.getElementById("btnAddEnt"),
+    selStabile: document.getElementById("selStabile"),
+    fldStabileAddr: document.getElementById("fldStabileAddr"),
+    btnAddStabile: document.getElementById("btnAddStabile"),
+    selTipologia: document.getElementById("selTipologia"),
+    selPiano: document.getElementById("selPiano"),
+    wrapTipAlt: document.getElementById("wrapTipAlt"),
+    wrapPianoAlt: document.getElementById("wrapPianoAlt"),
+    fldTipAlt: document.getElementById("fldTipAlt"),
+    fldPianoAlt: document.getElementById("fldPianoAlt"),
+    fldDescSup: document.getElementById("fldDescSup"),
+    btnAddPres: document.getElementById("btnAddPres"),
+    listPres: document.getElementById("listPres"),
+    fldOsservazioni: document.getElementById("fldOsservazioni"),
+    btnAddBagno: document.getElementById("btnAddBagno"),
+    btnAddLocale: document.getElementById("btnAddLocale"),
+    localiWrap: document.getElementById("localiWrap"),
+    btnExport: document.getElementById("btnExport"),
+    btnImport: document.getElementById("btnImport"),
+    btnPrint: document.getElementById("btnPrint"),
+    btnReset: document.getElementById("btnReset"),
+    fileImport: document.getElementById("fileImport"),
+    statusText: document.getElementById("statusText")
+  };
+
+  var state = null;
+
+  function defaultState(){
+    var d = new Date();
+    return {
+      tipo: {consegna:true, riconsegna:true},
+      data: formatDateIT(d),
+      ora: nowTimeHHMM(),
+      locatore: el.fldLocatore.value,
+      rappresentato: el.fldRappresentato.value,
+      inquiliniUsc: [],
+      inquiliniEnt: [],
+      stabile: {name:"ISOSTAR", addr:"Via Ballerini 7, 6600 Locarno"},
+      unita: {tipologia:"2.5 locali", tipAlt:"", piano:"PT", pianoAlt:"", descr:""},
+      personePresenti: [{id:uid(), nome:"Daniele Biasca-Caroni", ruolo:"Locatore", auto:true}],
+      osservazioni:"",
+      locali: buildDefaultLocali("2.5 locali")
+    };
+  }
+
+  function buildDefaultLocali(tipologia){
+    var locali = [];
+    locali.push({id:uid(), tipo:"porta_entrata", titolo:"Porta entrata"});
+    locali.push({id:uid(), tipo:"corridoio", titolo:"Corridoio"});
+    locali.push({id:uid(), tipo:"cucina", titolo:"Cucina"});
+    locali.push({id:uid(), tipo:"bagno", titolo:"Bagno 1"});
+
+    if(tipologia === "Monolocale"){
+      locali.push({id:uid(), tipo:"stanza_soggiorno", titolo:"Stanza / Soggiorno", descr:""});
+    }else{
+      locali.push({id:uid(), tipo:"soggiorno", titolo:"Soggiorno"});
+      locali.push({id:uid(), tipo:"stanza", titolo:"Stanza 1", descr:""});
+      if(tipologia === "3.5 locali" || tipologia === "4.5 locali"){
+        locali.push({id:uid(), tipo:"stanza", titolo:"Stanza 2", descr:""});
+      }
+      if(tipologia === "4.5 locali"){
+        locali.push({id:uid(), tipo:"stanza", titolo:"Stanza 3", descr:""});
+      }
+    }
+    locali.push({id:uid(), tipo:"balcone", titolo:"Balcone 1", nonPresente:false});
+    return locali;
+  }
+
+  function loadState(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  }
+  function saveState(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){} }
+
+  var _saveTimer = null;
+  function renderPersonePresenti(){
+    el.listPres.innerHTML = "";
+    state.personePresenti.forEach(function(p, idx){
+      el.listPres.appendChild(personRow(p, function(){
+        // update is in-place
+        syncPersonePresenti();
+        saveStateDebouncedPlain();
+      }, function(){
+        // remove only if not auto
+        if(p.auto) return;
+        state.personePresenti.splice(idx,1);
+        syncPersonePresenti();
+        saveState();
+        renderPersonePresenti();
+        validateStatus();
+      }));
+    });
+  }
+
+  function saveStateDebouncedPlain(){
+    if(_saveTimer) clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(function(){
+      syncPersonePresenti();
+      saveState();
+      validateStatus();
+    }, 180);
+  }
+
+  function saveStateDebouncedPeople(){
+    if(_saveTimer) clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(function(){
+      syncPersonePresenti();
+      saveState();
+      validateStatus();
+      // update only the people list (safe for tenant typing)
+      renderPersonePresenti();
+    }, 180);
+  }
+
+
+  function ensureTipoValid(){
+    if(!el.chkConsegna.checked && !el.chkRiconsegna.checked) el.chkConsegna.checked = true;
+  }
+
+  function renderStabili(){
+    var opts = allStabili();
+    el.selStabile.innerHTML = "";
+    opts.forEach(function(x){
+      var o = document.createElement("option");
+      o.value = x.name;
+      o.textContent = x.name;
+      el.selStabile.appendChild(o);
+    });
+  }
+
+  function escapeHtml(str){
+    str = (str==null) ? "" : (""+str);
+    return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  }
+  function nl2br(str){ return (str||"").replace(/\n/g,"<br/>"); }
+
+  function firstLineBoldNl2br(str){
+    str = (str||"");
+    var lines = str.split(/\r?\n/);
+    var first = (lines.shift()||"").trim();
+    var rest = lines.join("\n");
+    var out = "";
+    if(first){
+      out += "<strong>"+escapeHtml(first)+"</strong>";
+    }
+    if(rest.trim()){
+      out += (out ? "<br/>" : "") + nl2br(escapeHtml(rest));
+    }
+    return out || "";
+  }
+
+  function inquilinoRow(q, isUsc, onChange, onDelete){
+    var wrap = document.createElement("div");
+    wrap.className = "card";
+    wrap.style.boxShadow = "none";
+    wrap.style.borderStyle = "dashed";
+    wrap.style.margin = "10px 0 0";
+
+    var grid = document.createElement("div");
+    grid.className = "grid cols2";
+
+    function field(label, type, val, setter){
+      var d = document.createElement("div");
+      var l = document.createElement("label"); l.textContent = label;
+      var i = document.createElement("input"); i.type = type; i.value = val || "";
+      i.addEventListener("input", function(){ setter(i.value); if(onChange) onChange(); });
+      d.appendChild(l); d.appendChild(i);
+      return d;
+    }
+
+    grid.appendChild(field("Nome e Cognome (obbligatorio)", "text", q.nome, v => q.nome=v));
+    grid.appendChild(field("Telefono", "tel", q.tel, v => q.tel=v));
+    grid.appendChild(field("Email", "email", q.email, v => q.email=v));
+    if(isUsc) grid.appendChild(field("Nuovo indirizzo", "text", q.nuovoInd, v => q.nuovoInd=v));
+
+    var actions = document.createElement("div");
+    actions.className = "inline-actions";
+    var del = document.createElement("button");
+    del.className = "btn mini danger";
+    del.textContent = "Elimina";
+    del.addEventListener("click", onDelete);
+    actions.appendChild(del);
+
+    wrap.appendChild(grid);
+    wrap.appendChild(actions);
+    return wrap;
+  }
+
+  function personRow(p, onChange, onDelete){
+    var wrap = document.createElement("div");
+    wrap.className = "card";
+    wrap.style.boxShadow = "none";
+    wrap.style.borderStyle = "dashed";
+    wrap.style.margin = "10px 0 0";
+
+    var row = document.createElement("div");
+    row.className = "row";
+
+    var f1 = document.createElement("div");
+    f1.className = "field";
+    var l1 = document.createElement("label"); l1.textContent = "Nome";
+    var i1 = document.createElement("input"); i1.type="text"; i1.value = p.nome || "";
+    i1.addEventListener("input", function(){ p.nome=i1.value; onChange(); });
+    f1.appendChild(l1); f1.appendChild(i1);
+
+    var f2 = document.createElement("div");
+    f2.className = "field small";
+    var l2 = document.createElement("label"); l2.textContent = "Ruolo";
+    var i2 = document.createElement("input"); i2.type="text"; i2.value = p.ruolo || "";
+    i2.addEventListener("input", function(){ p.ruolo=i2.value; onChange(); });
+    f2.appendChild(l2); f2.appendChild(i2);
+
+    var del = document.createElement("button");
+    del.className = "btn mini danger";
+    del.textContent = p.auto ? "Auto" : "Elimina";
+    del.disabled = !!p.auto;
+    del.style.opacity = p.auto ? "0.5" : "1";
+    del.addEventListener("click", function(){ if(!p.auto) onDelete(); });
+
+    row.appendChild(f1); row.appendChild(f2); row.appendChild(del);
+    wrap.appendChild(row);
+    return wrap;
+  }
+
+  function syncPersonePresenti(){
+    var custom = (state.personePresenti||[]).filter(p => !p.auto);
+    var base = [{id:uid(), nome:"Daniele Biasca-Caroni", ruolo:"Locatore", auto:true}];
+    function addFrom(list, ruolo){
+      (list||[]).forEach(function(x){
+        var nm = (x.nome||"").trim();
+        if(nm) base.push({id:uid(), nome:nm, ruolo:ruolo, auto:true});
+      });
+    }
+    if(state.tipo.consegna) addFrom(state.inquiliniEnt, "Inquilino entrante");
+    if(state.tipo.riconsegna) addFrom(state.inquiliniUsc, "Inquilino uscente");
+    state.personePresenti = base.concat(custom);
+  }
+
+
+  function ensureTenantRows(){
+    if(state.tipo.riconsegna && (!state.inquiliniUsc || state.inquiliniUsc.length===0)){
+      state.inquiliniUsc = [{id:uid(), nome:"", tel:"", email:"", nuovoInd:""}];
+    }
+    if(state.tipo.consegna && (!state.inquiliniEnt || state.inquiliniEnt.length===0)){
+      state.inquiliniEnt = [{id:uid(), nome:"", tel:"", email:""}];
+    }
+  }
+
+  function renderInquilini(){
+    ensureTenantRows();
+    el.cardUsc.style.display = state.tipo.riconsegna ? "" : "none";
+    el.cardEnt.style.display = state.tipo.consegna ? "" : "none";
+
+    el.listUsc.innerHTML = "";
+    state.inquiliniUsc.forEach(function(q, idx){
+      el.listUsc.appendChild(inquilinoRow(q, true, saveStateDebouncedPeople, function(){
+        state.inquiliniUsc.splice(idx,1); persistAndRefresh();
+      }));
+    });
+
+    el.listEnt.innerHTML = "";
+    state.inquiliniEnt.forEach(function(q, idx){
+      el.listEnt.appendChild(inquilinoRow(q, false, saveStateDebouncedPeople, function(){
+        state.inquiliniEnt.splice(idx,1); persistAndRefresh();
+      }));
+    });
+  }
+
+  function renderTipologiaExtras(){
+    el.wrapTipAlt.style.display = (state.unita.tipologia === "Altro") ? "" : "none";
+    el.wrapPianoAlt.style.display = (state.unita.piano === "Altro") ? "" : "none";
+  }
+
+  function rebuildLocaliForTipologia(){
+    var bagniCount = state.locali.filter(l => l.tipo==="bagno").length || 1;
+    var custom = state.locali.filter(l => l.tipo==="custom");
+    var newLocali = buildDefaultLocali(state.unita.tipologia);
+
+    // remove bagno and re-add count
+    var firstBagnoIdx = newLocali.findIndex(l => l.tipo==="bagno");
+    newLocali = newLocali.filter(l => l.tipo!=="bagno");
+    for(var i=0;i<bagniCount;i++){
+      newLocali.splice(firstBagnoIdx+i, 0, {id:uid(), tipo:"bagno", titolo:"Bagno "+(i+1)});
+    }
+
+    // inject custom after balcony
+    var balcIdx = newLocali.findIndex(l => l.tipo==="balcone");
+    if(balcIdx>=0) newLocali.splice(balcIdx+1, 0, ...custom);
+    else newLocali.push(...custom);
+
+    state.locali = newLocali;
+  }
+
+  function renderLocali(){
+    el.localiWrap.innerHTML = "";
+    state.locali.forEach(function(loc, idx){
+      var d = document.createElement("details");
+      var s = document.createElement("summary");
+      s.innerHTML = '<span>'+escapeHtml(loc.titolo)+'</span>' +
+                    (loc.tipo==="balcone" ? '<span class="pill">'+(loc.nonPresente ? "Non presente" : "Presente")+'</span>' : '<span class="pill">Step 1</span>');
+      d.appendChild(s);
+
+      var body = document.createElement("div");
+      body.className = "details-body";
+
+      if(loc.tipo === "balcone"){
+        var lab = document.createElement("label");
+        lab.style.display="flex"; lab.style.gap="10px"; lab.style.alignItems="center";
+        var c = document.createElement("input"); c.type="checkbox"; c.checked = !!loc.nonPresente;
+        c.addEventListener("change", function(){ loc.nonPresente = c.checked; persistAndRefresh(); });
+        lab.appendChild(c);
+        lab.appendChild(document.createTextNode("Balcone non presente"));
+        body.appendChild(lab);
+        body.appendChild(document.createElement("div")).className="hr";
+      }
+
+      if(loc.tipo === "stanza" || loc.tipo === "stanza_soggiorno"){
+        var l = document.createElement("label"); l.textContent="Descrizione stanza (facoltativa)";
+        var inp = document.createElement("input"); inp.type="text"; inp.value = loc.descr||"";
+        inp.addEventListener("input", function(){ loc.descr = inp.value; saveState(); });
+        body.appendChild(l); body.appendChild(inp);
+        body.appendChild(document.createElement("div")).className="hr";
+      }
+
+      var note = document.createElement("div");
+      note.className="note";
+      note.textContent="In questo step c’è solo la struttura del locale. Nel prossimo step aggiungo gli elementi e le regole (porta primo elemento, difetti, non presente, ecc.).";
+      body.appendChild(note);
+
+      if(loc.tipo==="custom"){
+        body.appendChild(document.createElement("div")).className="hr";
+        var del = document.createElement("button");
+        del.className="btn mini danger";
+        del.textContent="Elimina locale";
+        del.addEventListener("click", function(){
+          state.locali.splice(idx,1); persistAndRefresh();
+        });
+        body.appendChild(del);
+      }
+
+      d.appendChild(body);
+      el.localiWrap.appendChild(d);
+    });
+  }
+
+  function validateStatus(){
+    var issues = [];
+    function missingNames(list){
+      return (list||[]).some(x => !x.nome || !x.nome.trim());
+    }
+    if(state.tipo.riconsegna && missingNames(state.inquiliniUsc)) issues.push("Nomi uscenti");
+    if(state.tipo.consegna && missingNames(state.inquiliniEnt)) issues.push("Nomi entranti");
+    el.statusText.textContent = issues.length ? ("Da completare: "+issues.join(", ")) : "OK";
+  }
+
+  function refreshPrint(){
+    var tipoTxt = state.tipo.consegna && state.tipo.riconsegna ? "alla consegna e alla riconsegna" : (state.tipo.consegna ? "alla consegna" : "alla riconsegna");
+
+    document.getElementById("printHeader").innerHTML =
+      '<div class="print-h">Verbale di constatazione dello stato dell’ente locato</div>' +
+      '<div class="print-kv"><div><strong>'+escapeHtml(tipoTxt)+'</strong></div>' +
+      '<div>Redatto il <strong>'+escapeHtml(state.data)+'</strong> alle ore <strong>'+escapeHtml(state.ora)+'</strong></div></div>';
+
+    document.getElementById("printParti").innerHTML =
+      '<div class="print-h">Locatore</div><div class="print-kv"><div>'+nl2br(escapeHtml(state.locatore))+'</div></div>' +
+      '<div style="height:8px"></div>' +
+      '<div class="print-h">Rappresentato da</div><div class="print-kv"><div>'+firstLineBoldNl2br(state.rappresentato)+'</div></div>';
+
+    document.getElementById("printUsc").innerHTML = state.tipo.riconsegna
+      ? '<div class="print-h">Inquilino/i uscente/i</div><div class="print-kv">'+(state.inquiliniUsc.length?state.inquiliniUsc.map(q=>'<div><strong>'+escapeHtml(q.nome||"")+'</strong></div>').join(""):'<div class="note">—</div>')+'</div>'
+      : "";
+
+    document.getElementById("printEnt").innerHTML = state.tipo.consegna
+      ? '<div class="print-h">Inquilino/i entrante/i</div><div class="print-kv">'+(state.inquiliniEnt.length?state.inquiliniEnt.map(q=>'<div><strong>'+escapeHtml(q.nome||"")+'</strong></div>').join(""):'<div class="note">—</div>')+'</div>'
+      : "";
+
+    document.getElementById("printStabile").innerHTML =
+      '<div class="print-h">Ente locato</div><div class="print-kv"><div><strong>'+escapeHtml((state.stabile.name||"").toUpperCase())+'</strong></div><div>'+escapeHtml(state.stabile.addr||"")+'</div></div>';
+
+    var tip = state.unita.tipologia==="Altro" ? (state.unita.tipAlt||"Altro") : state.unita.tipologia;
+    var piano = state.unita.piano==="Altro" ? (state.unita.pianoAlt||"Altro") : state.unita.piano;
+    document.getElementById("printUnita").innerHTML =
+      '<div class="print-h">Unità</div><div class="print-kv"><div><strong>Tipologia:</strong> '+escapeHtml(tip)+' &nbsp;&nbsp; <strong>Piano:</strong> '+escapeHtml(piano)+'</div>' +
+      (state.unita.descr ? '<div><strong>Descrizione:</strong> '+escapeHtml(state.unita.descr)+'</div>' : '') +
+      '</div>';
+
+    // Persone presenti (stampa strutturata: locatore + inquilini entranti/uscenti + eventuali altri presenti)
+    var presLoc = (state.personePresenti||[]).find(p => (p.ruolo||"").toLowerCase()==="locatore");
+    var locName = presLoc && (presLoc.nome||"").trim() ? presLoc.nome.trim() : "Daniele Biasca-Caroni";
+
+    function namesFrom(list){
+      return (list||[]).map(x => (x.nome||"").trim()).filter(Boolean);
+    }
+    var entNames = state.tipo.consegna ? namesFrom(state.inquiliniEnt) : [];
+    var uscNames = state.tipo.riconsegna ? namesFrom(state.inquiliniUsc) : [];
+
+    var customPres = (state.personePresenti||[]).filter(p => !p.auto && (p.nome||"").trim());
+
+    function lineOrBlank(label, names){
+      if(!names || !names.length){
+        return '<div><strong>'+escapeHtml(label)+':</strong> _____________________________</div>';
+      }
+      return '<div><strong>'+escapeHtml(label)+':</strong> '+escapeHtml(names.join(", "))+'</div>';
+    }
+
+    var presHtml = '';
+    presHtml += '<div><strong>Locatore:</strong> '+escapeHtml(locName)+'</div>';
+    if(state.tipo.consegna) presHtml += lineOrBlank('Inquilino/i entrante/i', entNames);
+    if(state.tipo.riconsegna) presHtml += lineOrBlank('Inquilino/i uscente/i', uscNames);
+
+    if(customPres.length){
+      presHtml += '<div style="height:6px"></div>';
+      presHtml += '<div><strong>Altre persone presenti:</strong></div>';
+      presHtml += customPres.map(p => '<div>'+escapeHtml((p.nome||"").trim())+(p.ruolo && p.ruolo.trim() ? ' — '+escapeHtml(p.ruolo.trim()) : '')+'</div>').join('');
+    }
+
+    document.getElementById("printPres").innerHTML =
+      '<div class="print-h">Persone presenti</div><div class="print-kv">'+presHtml+'</div>';
+
+    document.getElementById("printOss").innerHTML = state.osservazioni
+      ? '<div class="print-h">Osservazioni particolari</div><div class="print-kv"><div>'+nl2br(escapeHtml(state.osservazioni))+'</div></div>'
+      : "";
+
+    var out = '<div class="print-h">Locali</div>';
+    state.locali.forEach(function(loc){
+      if(loc.tipo==="balcone" && loc.nonPresente) return;
+      out += '<div class="print-loc-title">'+escapeHtml(loc.titolo)+'</div>';
+      if((loc.tipo==="stanza"||loc.tipo==="stanza_soggiorno") && loc.descr){
+        out += '<div class="print-kv"><div><strong>Descrizione:</strong> '+escapeHtml(loc.descr)+'</div></div>';
+      }
+      out += '<div class="print-kv"><div class="note">[Step 1] Elementi dettagliati nel prossimo step.</div></div>';
+    });
+    document.getElementById("printLocali").innerHTML = out;
+  }
+
+  function persistAndRefresh(){
+    state.tipo.consegna = el.chkConsegna.checked;
+    state.tipo.riconsegna = el.chkRiconsegna.checked;
+    state.data = el.fldData.value;
+    state.ora = el.fldOra.value;
+    state.locatore = el.fldLocatore.value;
+    state.rappresentato = el.fldRappresentato.value;
+
+    state.stabile.name = el.selStabile.value;
+    state.stabile.addr = el.fldStabileAddr.value;
+
+    state.unita.tipologia = el.selTipologia.value;
+    state.unita.tipAlt = el.fldTipAlt.value;
+    state.unita.piano = el.selPiano.value;
+    state.unita.pianoAlt = el.fldPianoAlt.value;
+    state.unita.descr = el.fldDescSup.value;
+
+    state.osservazioni = el.fldOsservazioni.value;
+
+    syncPersonePresenti();
+    saveState();
+
+    renderInquilini();
+    renderTipologiaExtras();
+    el.listPres.innerHTML="";
+    state.personePresenti.forEach(function(p, idx){
+      el.listPres.appendChild(personRow(p, persistAndRefresh, function(){ state.personePresenti.splice(idx,1); persistAndRefresh(); }));
+    });
+    renderLocali();
+    validateStatus();
+    refreshPrint();
+  }
+
+  function init(){
+    el.fldData.value = formatDateIT(new Date());
+    el.fldOra.value = nowTimeHHMM();
+
+    state = loadState() || defaultState();
+
+    renderStabili();
+    el.chkConsegna.checked = !!state.tipo.consegna;
+    el.chkRiconsegna.checked = !!state.tipo.riconsegna;
+    if(!el.chkConsegna.checked && !el.chkRiconsegna.checked){ el.chkConsegna.checked = true; state.tipo.consegna = true; }
+
+    el.fldData.value = state.data || el.fldData.value;
+    el.fldOra.value = state.ora || el.fldOra.value;
+    el.fldLocatore.value = state.locatore || el.fldLocatore.value;
+    el.fldRappresentato.value = state.rappresentato || el.fldRappresentato.value;
+
+    el.selStabile.value = state.stabile.name || "ISOSTAR";
+    var found = allStabili().find(x => x.name===el.selStabile.value);
+    el.fldStabileAddr.value = state.stabile.addr || (found ? found.addr : "");
+
+    el.selTipologia.value = state.unita.tipologia || "2.5 locali";
+    el.selPiano.value = state.unita.piano || "PT";
+    el.fldTipAlt.value = state.unita.tipAlt || "";
+    el.fldPianoAlt.value = state.unita.pianoAlt || "";
+    el.fldDescSup.value = state.unita.descr || "";
+    el.fldOsservazioni.value = state.osservazioni || "";
+
+    if(!state.locali || !state.locali.length) state.locali = buildDefaultLocali(el.selTipologia.value);
+
+    el.chkConsegna.addEventListener("change", function(){ ensureTipoValid(); persistAndRefresh(); });
+    el.chkRiconsegna.addEventListener("change", function(){ ensureTipoValid(); persistAndRefresh(); });
+
+    ["input","change"].forEach(function(evt){
+      el.fldData.addEventListener(evt, persistAndRefresh);
+      el.fldOra.addEventListener(evt, persistAndRefresh);
+      el.fldLocatore.addEventListener(evt, persistAndRefresh);
+      el.fldRappresentato.addEventListener(evt, persistAndRefresh);
+      el.fldStabileAddr.addEventListener(evt, persistAndRefresh);
+      el.fldTipAlt.addEventListener(evt, persistAndRefresh);
+      el.fldPianoAlt.addEventListener(evt, persistAndRefresh);
+      el.fldDescSup.addEventListener(evt, persistAndRefresh);
+      el.fldOsservazioni.addEventListener(evt, persistAndRefresh);
+    });
+
+    el.selStabile.addEventListener("change", function(){
+      var opt = allStabili().find(x => x.name===el.selStabile.value);
+      state.stabile.name = el.selStabile.value;
+      state.stabile.addr = opt ? opt.addr : "";
+      el.fldStabileAddr.value = state.stabile.addr;
+      persistAndRefresh();
+    });
+
+    el.selTipologia.addEventListener("change", function(){
+      state.unita.tipologia = el.selTipologia.value;
+      rebuildLocaliForTipologia();
+      persistAndRefresh();
+    });
+
+    el.selPiano.addEventListener("change", function(){ persistAndRefresh(); });
+
+    el.btnAddUsc.addEventListener("click", function(){
+      state.inquiliniUsc.push({id:uid(), nome:"", tel:"", email:"", nuovoInd:""});
+      persistAndRefresh();
+    });
+    el.btnAddEnt.addEventListener("click", function(){
+      state.inquiliniEnt.push({id:uid(), nome:"", tel:"", email:""});
+      persistAndRefresh();
+    });
+
+    el.btnAddPres.addEventListener("click", function(){
+      state.personePresenti.push({id:uid(), nome:"", ruolo:"", auto:false});
+      persistAndRefresh();
+    });
+
+    el.btnAddBagno.addEventListener("click", function(){
+      var lastIdx=-1, count=0;
+      state.locali.forEach(function(l, i){ if(l.tipo==="bagno"){ lastIdx=i; count++; } });
+      var bagno = {id:uid(), tipo:"bagno", titolo:"Bagno "+(count+1)};
+      state.locali.splice(lastIdx+1, 0, bagno);
+      var n=0;
+      state.locali.forEach(function(l){ if(l.tipo==="bagno"){ n++; l.titolo="Bagno "+n; } });
+      persistAndRefresh();
+    });
+
+    el.btnAddLocale.addEventListener("click", function(){
+      var nome = prompt("Nome del locale (es. Cantina, Ripostiglio, Lavanderia, ecc.)");
+      if(!nome) return;
+      state.locali.push({id:uid(), tipo:"custom", titolo:(""+nome).trim()});
+      persistAndRefresh();
+    });
+
+    el.btnAddStabile.addEventListener("click", function(){
+      var nome = prompt("Nome stabile (es. NUOVO STABILE)");
+      if(!nome) return;
+      var addr = prompt("Indirizzo completo");
+      if(addr == null) addr = "";
+      nome = (""+nome).trim().toUpperCase();
+      addr = (""+addr).trim();
+      if(!nome) return;
+      var custom = loadCustomStabili();
+      custom.push({name:nome, addr:addr});
+      var map = {};
+      custom.forEach(x => map[x.name]=x);
+      saveCustomStabili(Object.values(map));
+      renderStabili();
+      el.selStabile.value = nome;
+      el.fldStabileAddr.value = addr;
+      state.stabile.name = nome;
+      state.stabile.addr = addr;
+      persistAndRefresh();
+    });
+
+    el.btnPrint.addEventListener("click", function(){ persistAndRefresh(); window.print(); });
+
+    el.btnExport.addEventListener("click", function(){
+      persistAndRefresh();
+      var blob = new Blob([JSON.stringify(state, null, 2)], {type:"application/json"});
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "verbale.json";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 250);
+    });
+
+    el.btnImport.addEventListener("click", function(){ el.fileImport.click(); });
+    el.fileImport.addEventListener("change", function(){
+      var f = el.fileImport.files && el.fileImport.files[0];
+      if(!f) return;
+      var r = new FileReader();
+      r.onload = function(){
+        try{
+          var obj = JSON.parse(r.result);
+          if(!obj || typeof obj !== "object") throw new Error("invalid");
+          state = obj;
+          saveState();
+          location.reload();
+        }catch(e){ alert("JSON non valido."); }
+      };
+      r.readAsText(f);
+      el.fileImport.value = "";
+    });
+
+    el.btnReset.addEventListener("click", function(){
+      if(!confirm("Reset completo? Cancella i dati salvati per questo verbale.")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    });
+
+    persistAndRefresh();
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>
