@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Verbale - Porta entrata (test STEP2)</title>
+  <style>
+    :root{
+      --bg:#f3f4f6;
+      --panel:#ffffff;
+      --border:#d1d5db;
+      --text:#111827;
+      --muted:#6b7280;
+      --accent:#2563eb;
+      --danger:#dc2626;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);}
+    .topbar{
+      position:sticky;top:0;z-index:10;
+      background:rgba(243,244,246,.95);
+      backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid var(--border);
+      padding:10px 12px;
+      display:flex;gap:10px;align-items:center;justify-content:space-between;
+    }
+    .btn{
+      border:1px solid var(--border);
+      background:#fff;
+      padding:10px 12px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      touch-action:manipulation;
+    }
+    .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+    .btn.danger{background:#fff;color:var(--danger);border-color:#fca5a5;}
+    .pill{border:1px solid var(--border);background:#fff;border-radius:999px;padding:8px 12px;font-weight:700;}
+    .wrap{max-width:980px;margin:18px auto;padding:0 12px 36px;}
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      box-shadow:0 1px 0 rgba(0,0,0,.03);
+    }
+    h1{margin:0 0 10px 0;font-size:26px;line-height:1.2;white-space:nowrap;}
+    .sub{color:var(--muted);font-size:14px;margin:0 0 18px 0;}
+    .section-title{font-size:18px;font-weight:800;margin:18px 0 10px 0;}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    @media (max-width:820px){ .grid2{grid-template-columns:1fr;} h1{white-space:normal;} }
+    label{display:block;font-weight:700;margin:0 0 6px 0;}
+    textarea,input[type="text"],input[type="number"]{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px;
+      font-size:16px;
+      outline:none;
+      background:#fff;
+    }
+    textarea{min-height:86px;resize:vertical;}
+    .box{
+      border:1px dashed var(--border);
+      border-radius:14px;
+      padding:14px;
+      background:#fff;
+    }
+    .item{border:1px dashed var(--border);border-radius:14px;padding:14px;margin:12px 0;background:#fff;}
+    .item h3{margin:0 0 10px 0;font-size:16px;}
+    .row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+    .row .opt{display:flex;gap:10px;align-items:center;font-weight:700;}
+    input[type="radio"],input[type="checkbox"]{width:22px;height:22px;}
+    .muted{color:var(--muted);font-size:13px;}
+    .hr{height:1px;background:var(--border);margin:12px 0;}
+    .photos{margin-top:10px;}
+    .photo-row{display:flex;gap:10px;align-items:center;justify-content:space-between;border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin:8px 0;}
+    .smallbtn{padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:#fff;font-weight:700;cursor:pointer;}
+    .smallbtn.danger{border-color:#fca5a5;color:var(--danger);}
+    .keygrid{display:grid;grid-template-columns:1fr 160px;gap:10px;align-items:center;}
+    @media (max-width:520px){ .keygrid{grid-template-columns:1fr;} }
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;color:var(--muted);}
+    /* PRINT */
+    @media print{
+      body{background:#fff;}
+      .topbar{display:none !important;}
+      .wrap{max-width:none;margin:0;padding:0;}
+      .card{border:none;border-radius:0;box-shadow:none;padding:0;}
+      .item,.box{border:1px solid #e5e7eb;}
+      .smallbtn,.btn{display:none !important;}
+      .muted{color:#374151;}
+      h1{white-space:normal;}
+    }
+  
+    .locale-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;margin-bottom:10px;}
+    .pill{border:1px solid var(--border);background:#fff;border-radius:999px;padding:8px 12px;font-weight:700;cursor:pointer;}
+    .pill:active{transform:translateY(1px);}
+
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+      <button class="btn primary" id="btnPrint">Stampa / Salva PDF (solo Porta entrata)</button>
+      <button class="btn" id="btnExport">Esporta JSON</button>
+      <button class="btn" id="btnImport">Importa JSON</button>
+      <button class="btn danger" id="btnReset">Reset</button>
+    </div>
+    <div class="pill" id="statusPill">Stato: OK</div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>Verbale di constatazione dello stato dell’ente locato</h1>
+      <p class="sub">TEST mirato STEP 2: <b>solo locale “Porta entrata”</b>. Foto raccolte ma <b>mai</b> inserite nel PDF.</p>
+
+      <div class="locale-header"><div class="section-title" style="margin:0;">Porta entrata</div><button type="button" class="pill" id="toggleLocale" aria-expanded="false">Apri locale</button></div>
+
+      <div id="localeBody" hidden>
+      <div class="box" id="portaEntrataBox">
+        <!-- PORTA (porta + telaio) -->
+        <div class="item">
+          <h3>PORTA</h3>
+
+          <div style="font-weight:800;margin-bottom:6px;">Porta</div>
+          <div class="row" role="group" aria-label="Porta stato">
+            <label class="opt"><input type="radio" name="porta_stato" value="nuovo"> nuovo</label>
+            <label class="opt"><input type="radio" name="porta_stato" value="usura"> normale usura</label>
+          </div>
+          <div class="row" style="margin-top:6px;">
+            <label class="opt"><input type="checkbox" id="porta_difetti"> riscontrati difetti</label>
+          </div>
+          <div id="porta_difetti_box" style="display:none;margin-top:10px;">
+            <label>Descrizione difetti</label>
+            <textarea id="porta_desc" placeholder="Descrivi i difetti riscontrati..."></textarea>
+            <div class="photos">
+              <input type="file" id="porta_photos_in" accept="image/*" multiple style="display:none">
+              <button class="smallbtn" id="porta_add_photo">➕ Foto</button>
+              <div id="porta_photos_list"></div>
+              <div class="muted">Le foto vengono salvate localmente ma non saranno incluse nel PDF.</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div style="font-weight:800;margin-bottom:6px;">Telaio porta</div>
+          <div class="row" role="group" aria-label="Telaio stato">
+            <label class="opt"><input type="radio" name="telaio_stato" value="nuovo"> nuovo</label>
+            <label class="opt"><input type="radio" name="telaio_stato" value="usura"> normale usura</label>
+          </div>
+          <div class="row" style="margin-top:6px;">
+            <label class="opt"><input type="checkbox" id="telaio_difetti"> riscontrati difetti</label>
+          </div>
+          <div id="telaio_difetti_box" style="display:none;margin-top:10px;">
+            <label>Descrizione difetti</label>
+            <textarea id="telaio_desc" placeholder="Descrivi i difetti riscontrati..."></textarea>
+            <div class="photos">
+              <input type="file" id="telaio_photos_in" accept="image/*" multiple style="display:none">
+              <button class="smallbtn" id="telaio_add_photo">➕ Foto</button>
+              <div id="telaio_photos_list"></div>
+              <div class="muted">Le foto vengono salvate localmente ma non saranno incluse nel PDF.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Serratura -->
+        <div class="item">
+          <h3>Serratura</h3>
+          <div class="row" role="group" aria-label="Serratura stato">
+            <label class="opt"><input type="radio" name="serratura_stato" value="nuovo"> nuovo</label>
+            <label class="opt"><input type="radio" name="serratura_stato" value="usura"> normale usura</label>
+          </div>
+          <div class="row" style="margin-top:6px;">
+            <label class="opt"><input type="checkbox" id="serratura_difetti"> riscontrati difetti</label>
+          </div>
+          <div id="serratura_difetti_box" style="display:none;margin-top:10px;">
+            <label>Descrizione difetti</label>
+            <textarea id="serratura_desc" placeholder="Descrivi i difetti riscontrati..."></textarea>
+            <div class="photos">
+              <input type="file" id="serratura_photos_in" accept="image/*" multiple style="display:none">
+              <button class="smallbtn" id="serratura_add_photo">➕ Foto</button>
+              <div id="serratura_photos_list"></div>
+              <div class="muted">Le foto vengono salvate localmente ma non saranno incluse nel PDF.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campanello / Citofono -->
+        <div class="item">
+          <h3>Campanello / Citofono</h3>
+          <div class="row" role="group" aria-label="Citofono stato">
+            <label class="opt"><input type="radio" name="citofono_stato" value="nuovo"> nuovo</label>
+            <label class="opt"><input type="radio" name="citofono_stato" value="usura"> normale usura</label>
+            <label class="opt"><input type="radio" name="citofono_stato" value="assente"> non presente</label>
+          </div>
+          <div class="row" style="margin-top:6px;">
+            <label class="opt"><input type="checkbox" id="citofono_difetti"> riscontrati difetti</label>
+          </div>
+          <div id="citofono_difetti_box" style="display:none;margin-top:10px;">
+            <label>Descrizione difetti</label>
+            <textarea id="citofono_desc" placeholder="Descrivi i difetti riscontrati..."></textarea>
+            <div class="photos">
+              <input type="file" id="citofono_photos_in" accept="image/*" multiple style="display:none">
+              <button class="smallbtn" id="citofono_add_photo">➕ Foto</button>
+              <div id="citofono_photos_list"></div>
+              <div class="muted">Le foto vengono salvate localmente ma non saranno incluse nel PDF.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chiavi -->
+        <div class="item">
+          <h3>Chiavi</h3>
+          <div class="muted" style="margin-bottom:10px;">
+            Regola: <b>Chiave standard</b> ed <b>Chiave registrata</b> sono mutualmente esclusive. Le altre possono coesistere.
+          </div>
+
+          <div class="keygrid">
+            <label class="opt"><input type="checkbox" id="k_standard"> Chiave standard</label>
+            <input type="number" id="k_standard_n" min="0" placeholder="Nro." inputmode="numeric" />
+          </div>
+
+          <div class="keygrid">
+            <label class="opt"><input type="checkbox" id="k_sicurezza"> Chiave di sicurezza aggiuntiva</label>
+            <input type="number" id="k_sicurezza_n" min="0" placeholder="Nro." inputmode="numeric" />
+          </div>
+
+          <div class="keygrid">
+            <label class="opt"><input type="checkbox" id="k_combinata"> Chiave combinata app. e portone</label>
+            <input type="number" id="k_combinata_n" min="0" placeholder="Nro." inputmode="numeric" />
+          </div>
+
+          <div class="keygrid">
+            <label class="opt"><input type="checkbox" id="k_registrata"> Chiave registrata</label>
+            <input type="number" id="k_registrata_n" min="0" placeholder="Nro." inputmode="numeric" />
+          </div>
+
+          <div style="margin-top:12px;">
+            <label>Note particolari</label>
+            <textarea id="k_note" placeholder="Eventuali note particolari sulle chiavi..."></textarea>
+          </div>
+
+          <div class="muted"><span class="kbd">Suggerimento:</span> lascia Nro. vuoto se non applicabile.</div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+(function(){
+  const LS_KEY = "verbale_portaentrata_step2_v2";
+  const $ = (id)=>document.getElementById(id);
+
+  const state = {
+    porta: { stato:null, difetti:false, desc:"", photos:[] },
+    telaio:{ stato:null, difetti:false, desc:"", photos:[] },
+    serratura:{ stato:null, difetti:false, desc:"", photos:[] },
+    citofono:{ stato:null, difetti:false, desc:"", photos:[] },
+    chiavi:{
+      standard:false, standard_n:"",
+      sicurezza:false, sicurezza_n:"",
+      combinata:false, combinata_n:"",
+      registrata:false, registrata_n:"",
+      note:""
+    }
+  };
+
+  const btnToggle = document.getElementById("toggleLocale");
+  const localeBody = document.getElementById("localeBody");
+
+  function localeHasData(s){
+    try{
+      // Porta / telaio / serratura / campanello
+      const blocks = [s.porta, s.telaio, s.serratura, s.campanello];
+      for(const b of blocks){
+        if(!b) continue;
+        if(b.stato) return true;
+        if(b.mode) return true; // campanello: nuovo/normale/nonPresente
+        if(b.difetti) return true;
+        if((b.desc||"").trim()) return true;
+        if(Array.isArray(b.photos) && b.photos.length) return true;
+      }
+      // Chiavi
+      if(s.keys){
+        if(s.keys.standard || s.keys.registrata) return true;
+        if((s.keys.sicurezzaExtra||0)>0) return true;
+        if((s.keys.combinata||0)>0) return true;
+        if((s.keys.standardN||0)>0) return true;
+        if((s.keys.registrataN||0)>0) return true;
+        if((s.keys.note||"").trim()) return true;
+      }
+      return false;
+    }catch(e){
+      return false;
+    }
+  }
+
+  function setLocaleOpen(open){
+    if(!localeBody || !btnToggle) return;
+    localeBody.hidden = !open;
+    btnToggle.textContent = open ? "Chiudi locale" : "Apri locale";
+    btnToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+
+
+  function readRadio(name){
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : null;
+  }
+  function setRadio(name, value){
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r=>{
+      r.checked = (r.value === value);
+    });
+  }
+
+  function save(){
+    try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){}
+    updateStatus();
+  }
+  function load(){
+    try{
+      const raw = localStorage.getItem(LS_KEY);
+      if(!raw) return;
+      const parsed = JSON.parse(raw);
+      if(parsed && typeof parsed === "object"){
+        Object.assign(state, parsed);
+      }
+    }catch(e){}
+  }
+
+  function updateStatus(){
+    const missing = [];
+    // Se difetti spuntati, suggeriamo compilazione descrizione
+    if(state.porta.difetti && !state.porta.desc.trim()) missing.push("Descr. difetti porta");
+    if(state.telaio.difetti && !state.telaio.desc.trim()) missing.push("Descr. difetti telaio");
+    if(state.serratura.difetti && !state.serratura.desc.trim()) missing.push("Descr. difetti serratura");
+    if(state.citofono.difetti && !state.citofono.desc.trim()) missing.push("Descr. difetti citofono");
+    const pill = $("statusPill");
+    if(!missing.length){
+      pill.textContent = "Stato: OK";
+      pill.style.borderColor = "#d1d5db";
+    }else{
+      pill.textContent = "Stato: Da completare: " + missing.join(", ");
+      pill.style.borderColor = "#fca5a5";
+    }
+  }
+
+  function render(){
+    // PORTA
+    setRadio("porta_stato", state.porta.stato);
+    $("porta_difetti").checked = !!state.porta.difetti;
+    $("porta_desc").value = state.porta.desc || "";
+    toggleDefectsBox("porta");
+
+    setRadio("telaio_stato", state.telaio.stato);
+    $("telaio_difetti").checked = !!state.telaio.difetti;
+    $("telaio_desc").value = state.telaio.desc || "";
+    toggleDefectsBox("telaio");
+
+    // Serratura
+    setRadio("serratura_stato", state.serratura.stato);
+    $("serratura_difetti").checked = !!state.serratura.difetti;
+    $("serratura_desc").value = state.serratura.desc || "";
+    toggleDefectsBox("serratura");
+
+    // Citofono
+    setRadio("citofono_stato", state.citofono.stato);
+    $("citofono_difetti").checked = !!state.citofono.difetti;
+    $("citofono_desc").value = state.citofono.desc || "";
+    toggleDefectsBox("citofono");
+    updateCitofonoUI();
+
+    // Chiavi
+    $("k_standard").checked = !!state.chiavi.standard;
+    $("k_standard_n").value = state.chiavi.standard_n ?? "";
+    $("k_sicurezza").checked = !!state.chiavi.sicurezza;
+    $("k_sicurezza_n").value = state.chiavi.sicurezza_n ?? "";
+    $("k_combinata").checked = !!state.chiavi.combinata;
+    $("k_combinata_n").value = state.chiavi.combinata_n ?? "";
+    $("k_registrata").checked = !!state.chiavi.registrata;
+    $("k_registrata_n").value = state.chiavi.registrata_n ?? "";
+    $("k_note").value = state.chiavi.note ?? "";
+
+    renderPhotos("porta");
+    renderPhotos("telaio");
+    renderPhotos("serratura");
+    renderPhotos("citofono");
+
+    updateStatus();
+  }
+
+  function updateCitofonoUI(){
+    const assente = (state.citofono.stato === "assente");
+    const dif = $("citofono_difetti");
+    const desc = $("citofono_desc");
+    const addBtn = $("citofono_add_photo");
+    const fileIn = $("citofono_photos_in");
+    // Se non presente: azzera e blocca difetti/foto/descrizione
+    if(assente){
+      state.citofono.difetti = false;
+      dif.checked = false;
+      state.citofono.desc = "";
+      desc.value = "";
+      // non cancelliamo le foto già caricate? meglio sì per coerenza
+      state.citofono.photos = [];
+      renderPhotos("citofono");
+      // disabilita input
+      dif.disabled = true;
+      desc.disabled = true;
+      addBtn.disabled = true;
+      fileIn.disabled = true;
+      // nasconde box difetti
+      $("citofono_difetti_box").style.display = "none";
+    }else{
+      dif.disabled = false;
+      desc.disabled = !state.citofono.difetti;
+      addBtn.disabled = !state.citofono.difetti;
+      fileIn.disabled = !state.citofono.difetti;
+    }
+  }
+
+  function toggleDefectsBox(prefix){
+    const box = $(prefix + "_difetti_box");
+    const on = state[prefix].difetti;
+    box.style.display = on ? "block" : "none";
+  }
+
+  function renderPhotos(prefix){
+    const list = $(prefix + "_photos_list");
+    list.innerHTML = "";
+    (state[prefix].photos || []).forEach((p, idx)=>{
+      const row = document.createElement("div");
+      row.className = "photo-row";
+      const left = document.createElement("div");
+      left.textContent = p.name || ("foto_" + (idx+1));
+      const btn = document.createElement("button");
+      btn.className = "smallbtn danger";
+      btn.type = "button";
+      btn.textContent = "Rimuovi";
+      btn.addEventListener("click", ()=>{
+        state[prefix].photos.splice(idx,1);
+        save(); renderPhotos(prefix);
+      });
+      row.appendChild(left); row.appendChild(btn);
+      list.appendChild(row);
+    });
+  }
+
+  async function filesToDataUrls(files){
+    const out = [];
+    for(const f of files){
+      const dataUrl = await new Promise((resolve,reject)=>{
+        const r = new FileReader();
+        r.onload = ()=>resolve(r.result);
+        r.onerror = ()=>reject(new Error("FileReader"));
+        r.readAsDataURL(f);
+      });
+      out.push({ name:f.name, type:f.type, size:f.size, dataUrl });
+    }
+    return out;
+  }
+
+  function bind(){
+    // Radios
+    document.querySelectorAll('input[name="porta_stato"]').forEach(r=>{
+      r.addEventListener("change", ()=>{ state.porta.stato = readRadio("porta_stato"); save(); });
+    });
+    document.querySelectorAll('input[name="telaio_stato"]').forEach(r=>{
+      r.addEventListener("change", ()=>{ state.telaio.stato = readRadio("telaio_stato"); save(); });
+    });
+    document.querySelectorAll('input[name="serratura_stato"]').forEach(r=>{
+      r.addEventListener("change", ()=>{ state.serratura.stato = readRadio("serratura_stato"); save(); });
+    });
+    document.querySelectorAll('input[name="citofono_stato"]').forEach(r=>{
+      r.addEventListener("change", ()=>{
+        state.citofono.stato = readRadio("citofono_stato");
+        updateCitofonoUI();
+        save();
+      });
+    });
+
+    // Defects toggles + text
+    ["porta","telaio","serratura","citofono"].forEach(prefix=>{
+      $(prefix + "_difetti").addEventListener("change", (e)=>{
+        state[prefix].difetti = e.target.checked;
+        toggleDefectsBox(prefix);
+        if(prefix==="citofono") updateCitofonoUI();
+        save();
+      });
+      $(prefix + "_desc").addEventListener("input", (e)=>{
+        state[prefix].desc = e.target.value;
+        save();
+      });
+      $(prefix + "_add_photo").addEventListener("click", ()=>{
+        $(prefix + "_photos_in").click();
+      });
+      $(prefix + "_photos_in").addEventListener("change", async (e)=>{
+        if(!state[prefix].difetti){
+          e.target.value = "";
+          return;
+        }
+        const files = Array.from(e.target.files || []);
+        if(!files.length){ return; }
+        const items = await filesToDataUrls(files);
+        state[prefix].photos = (state[prefix].photos || []).concat(items);
+        e.target.value = "";
+        save(); renderPhotos(prefix);
+      });
+    });
+
+    // Chiavi: esclusione standard vs registrata
+    $("k_standard").addEventListener("change", (e)=>{
+      state.chiavi.standard = e.target.checked;
+      if(e.target.checked){
+        state.chiavi.registrata = false;
+        $("k_registrata").checked = false;
+      }
+      save();
+    });
+    $("k_registrata").addEventListener("change", (e)=>{
+      state.chiavi.registrata = e.target.checked;
+      if(e.target.checked){
+        state.chiavi.standard = false;
+        $("k_standard").checked = false;
+      }
+      save();
+    });
+    $("k_sicurezza").addEventListener("change", (e)=>{ state.chiavi.sicurezza = e.target.checked; save(); });
+    $("k_combinata").addEventListener("change", (e)=>{ state.chiavi.combinata = e.target.checked; save(); });
+
+    ["k_standard_n","k_sicurezza_n","k_combinata_n","k_registrata_n"].forEach(id=>{
+      $(id).addEventListener("input", (e)=>{
+        state.chiavi[id.replace("k_","").replace("_n","") + "_n"] = e.target.value;
+        save();
+      });
+    });
+    $("k_note").addEventListener("input", (e)=>{ state.chiavi.note = e.target.value; save(); });
+
+    // Buttons
+    $("btnPrint").addEventListener("click", ()=>{
+      // prima di stampare, assicuriamoci che la UI sia coerente
+      window.print();
+    });
+    $("btnReset").addEventListener("click", ()=>{
+      if(!confirm("Confermi reset? Verranno cancellati i dati locali di questo test (solo Porta entrata).")) return;
+      localStorage.removeItem(LS_KEY);
+      location.reload();
+    });
+
+    $("btnExport").addEventListener("click", ()=>{
+      const blob = new Blob([JSON.stringify(state, null, 2)], {type:"application/json"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "porta-entrata.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    $("btnImport").addEventListener("click", ()=>{
+      const inp = document.createElement("input");
+      inp.type = "file";
+      inp.accept = "application/json";
+      inp.addEventListener("change", async ()=>{
+        const f = inp.files && inp.files[0];
+        if(!f) return;
+        const txt = await f.text();
+        try{
+          const parsed = JSON.parse(txt);
+          if(parsed && typeof parsed === "object"){
+            // merge prudente
+            ["porta","telaio","serratura","citofono","chiavi"].forEach(k=>{
+              if(parsed[k] !== undefined) state[k] = parsed[k];
+            });
+            save(); render();
+          }else{
+            alert("JSON non valido.");
+          }
+        }catch(e){
+          alert("JSON non valido.");
+        }
+      });
+      inp.click();
+    });
+  }
+
+  load();
+  bind();
+  render();
+
+  // Default: aperto se ci sono dati già compilati nel locale
+  setLocaleOpen(localeHasData(state));
+
+  // Toggle apri/chiudi
+  if(btnToggle){
+    btnToggle.addEventListener("click", ()=> setLocaleOpen(localeBody.hidden));
+  }
+
+  save();
+})();
+</script>
+</body>
+</html>
